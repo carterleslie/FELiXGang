@@ -8,10 +8,10 @@
  *
  ******************************************************************************/
 
-public class FELiX_gang 
+public class FELiXGang 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello, this is a sample FELiX_gang test file!" );
+        System.out.println( "Hello, this is a sample FELiXGang test file!" );
     }
 }

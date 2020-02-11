@@ -12,14 +12,14 @@ import org.junit.*;
  *
  ******************************************************************************/
 
-public class FELiX_gangTest
+public class FELiXGangTest
 {
-    FELiX_gang sampleVar;
+    FELiXGang sampleVar;
 
     @Before
     public void initialize()
     {
-    	sampleVar = new FELiX_gang();
+    	sampleVar = new FELiXGang();
     }
 
     //@Test 

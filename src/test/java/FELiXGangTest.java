@@ -1,16 +1,16 @@
+/******************************************************************************
+*  Authors: cal17b Carter Leslie
+*  Class  : Spring 2020 CS374.01 Dr. Reeves
+*  Date   : 2/21/2020
+*  Task   : Project 1 - Happy Teams Test File
+*
+*  Tests Team FELiXGang's Addition to the Happy Teams Project.
+*
+******************************************************************************/
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
-
-/******************************************************************************
- *  Author : cal17b Carter Leslie
- *  Class  : Spring 2020 CS374.01 Dr. Reeves
- *  Date   : 
- *  Task   : 
- *
- *  This is a file for creating other test files to use quickly in the future.
- *
- ******************************************************************************/
 
 public class FELiXGangTest
 {

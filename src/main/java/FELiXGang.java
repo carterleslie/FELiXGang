@@ -1,5 +1,5 @@
 /******************************************************************************
-*  Authors: cal17b Carter Leslie
+*  Authors: cal17b Carter Leslie, wsl15a Wade Linder,
 *  Class  : Spring 2020 CS374.01 Dr. Reeves
 *  Date   : 2/21/2020
 *  Task   : Project 1 - Happy Teams
@@ -10,8 +10,20 @@
 
 public class FELiXGang 
 {
-    public static void main( String[] args )
+	private:
+		int classSize;
+		int teamSize;
+		String[][] classArray;
+
+    //initializer for a FELiXGang
+    public FELiXGang(int cSize, int tSize)
     {
-        System.out.println( "Hello, this is a sample FELiXGang test file!" );
+    	classSize = cSize;
+    	teamSize = tSize;
+    	if(classSize % teamSize == 0)
+    		classArray = new classArray[teamSize][classSize/teamSize];
+    	else
+    		classArray = new classArray[teamSize][classSize/teamSize +1];
     }
+
 }

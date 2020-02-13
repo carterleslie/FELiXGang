@@ -4,7 +4,7 @@
 *  Date   : 2/21/2020
 *  Task   : Project 1 - Happy Teams Test File
 *
-*  Tests Team FELiXGang's Addition to the Happy Teams Project.
+*  Tests Team FELiXGang's edition of the Happy Teams Project.
 *
 ******************************************************************************/
 

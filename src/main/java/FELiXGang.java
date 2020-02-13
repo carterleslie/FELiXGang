@@ -40,7 +40,7 @@ public class FELiXGang
     	return teamSize;
     }
     //gets the classSize
-    public int getclassSize()
+    public int getClassSize()
     {
     	return classSize;
     }

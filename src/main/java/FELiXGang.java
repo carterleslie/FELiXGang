@@ -26,4 +26,13 @@ public class FELiXGang
     		classArray = new classArray[teamSize][classSize/teamSize +1];
     }
 
+    public int getTeamSize()
+    {
+    	return teamSize;
+    }
+
+    public int getClassSize()
+    {
+    	return classSize;
+    }
 }

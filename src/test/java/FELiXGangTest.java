@@ -16,10 +16,26 @@ public class FELiXGangTest
 {
     FELiXGang sampleVar;
 
-    @Before
+    /*@Before
     public void initialize()
     {
-    	sampleVar = new FELiXGang();
+    	
+    }*/
+
+    @Test
+    public void testInizializer()
+    {
+    	try
+    	{
+    		FELiXGang test = new FELiXGang(15,3)
+    		assertTrue(FELiXGang.getTeamSize() == 3); //team size should be 3
+
+    		assertTrue(FELiXGang.getClassSize() == 15); //class size should be 15
+    	}
+        catch (Exception e)
+        {
+            System.out.println("Test failed");
+        }
     }
 
     //@Test 

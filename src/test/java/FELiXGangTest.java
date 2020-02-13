@@ -1,8 +1,8 @@
 /******************************************************************************
-*  Authors: cal17b Carter Leslie
-*  Class  : Spring 2020 CS374.01 Dr. Reeves
-*  Date   : 2/21/2020
-*  Task   : Project 1 - Happy Teams Test File
+ *  Author : cal17b Carter Leslie, wsl15a Wade Linder, 
+ *  Class  : Spring 2020 CS374.01 Dr. Reeves
+ *  Date   : 
+ *  Task   : This is the test file for Project 1 of CS374. 
 *
 *  Tests Team FELiXGang's edition of the Happy Teams Project.
 *
@@ -23,17 +23,59 @@ public class FELiXGangTest
     }
 
     //@Test 
-    /*public void test**methodName**()
+    /*testEmpty()
     {
     	try
     	{
-    		*type** ans = sampleVar.**methodName(proper utilization)**;
-    		//assertEquals(**expected**,ans);
+    		string ans = sampleVar.**methodName(proper utilization)**;
+    		assertEquals("",ans);
     	}
         catch (Exception e)
         {
-            System.out.println("**tells if failed or passed**");
+            System.out.println("Matrix is not empty.");
         }
     } 
+	
+	//@Test
+	testTeamSize()
+	{
+		try
+		{
+			int ans = sampleVar.**methodName(proper utilization)**;
+			assertEquals(3,ans);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Teams are not three deep.");
+		}
+	}
+	
+	//@Test
+	testTeamNumber()
+	{
+		try
+		{
+			int ans = sampleVar.**methodName(proper utilization)**;
+			assertEquals(5,ans);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Not right amount of teams.");
+		}
+	}
+	
+	//@Test
+	testHappiness()
+	{
+		try
+		{
+			double ans = sampleVar.**methodName(proper utilization)**;
+			assertEquals(5,ans);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Not happy enough.");
+		}
+	}
     */
 }

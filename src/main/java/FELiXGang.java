@@ -35,4 +35,23 @@ public class FELiXGang
     	return classSize;
     }
 
+	//Prints out created teams.
+	public void printTeams() {
+		int numTeams;
+		if(classSize % teamSize == 0)
+			numTeams = classSize/teamSize;
+		else
+			numTeams = classSize/teamSize +1;
+		(for int c = 0; c < numTeams; c++) {
+			System.out.println("Team "c+1 ": "); 
+			(for int r = 0; r< teamSize; r++) {
+				if(r < teamSize-1)
+					System.out.println(classArray[r][c] ", ");	
+				else
+					System.out.println(classArray[r][c]);
+			}
+			System.out.println("\n");
+		}
+	}
+	
 }

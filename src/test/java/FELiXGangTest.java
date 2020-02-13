@@ -1,5 +1,5 @@
 /******************************************************************************
- *  Author : cal17b Carter Leslie, wsl15a Wade Linder, 
+ *  Author : cal17b Carter Leslie, wsl15a Wade Linder, and fab16b Felix Mbikogbia
  *  Class  : Spring 2020 CS374.01 Dr. Reeves
  *  Date   : 
  *  Task   : This is the test file for Project 1 of CS374. 

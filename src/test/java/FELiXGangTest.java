@@ -84,14 +84,14 @@ public class FELiXGangTest
     {
     	try
     	{
-		String test = "help";
-		sampleVar.fillTeamsMatrixIndex(test,0,0);
+			String test = "help";
+			sampleVar.fillTeamsMatrixIndex(test,0,0);
     		String ans = sampleVar.getTeamsMatrixIndex(0,0);
     		assertEquals("help",ans);
     	}
         catch (Exception e)
         {
-            System.out.println("Matrix is empty.");
+            System.out.println("Matrix is empty at r=0,c=0.");
         }
     } 
 	/*

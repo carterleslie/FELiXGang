@@ -79,20 +79,22 @@ public class FELiXGangTest
         }
     }
 
-    //@Test 
-    /*testEmpty()
+    @Test 
+    public void testEmpty()
     {
     	try
     	{
-    		string ans = sampleVar.**methodName(proper utilization)**;
-    		assertEquals("",ans);
+		String test = "help";
+		String fail = "null";
+    		String ans = sampleVar.fillTeamsMatrixIndex(test,0,0);
+    		assertEquals(fail,ans);
     	}
         catch (Exception e)
         {
             System.out.println("Matrix is not empty.");
         }
     } 
-	
+	/*
 	//@Test
 	testTeamSize()
 	{

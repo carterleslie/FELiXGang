@@ -18,7 +18,7 @@ public class FELiXGang
 	private int teamSize; //size of the teams, designated by user
 	private int numTeams; //number of teams, calculated with the above two ints in the initializer
 	private String[][] teamsMatrix; //the matrix of all names of the team members in respective teams
-	private String[][] prefsMatrix; //the matrix of all prefs of the team members, parallel to teamsMatrix
+	private int[][][] prefsMatrix; //the matrix of all prefs of the team members, parallel to teamsMatrix
 
     //initializer for a FELiXGang
     public FELiXGang(int cSize, int tSize)
@@ -31,8 +31,8 @@ public class FELiXGang
     	else
     		numTeams = classSize / teamSize + 1;
     	teamsMatrix = new String[teamSize][numTeams];
-    	prefsMatrix = new String[teamSize][numTeams];
-    	fillTeams("sampleTeam.txt");
+    	prefsMatrix = new int[teamSize][numTeams][6];
+    	fillTeams("D:\\GitHub\\FELiXGang\\sampleTeam.txt");
     }
     //gets the teamSize
     public int getTeamSize()
@@ -101,12 +101,17 @@ public class FELiXGang
 	//adds prefs to prefsMatrix at index [r][c]
     public void fillPrefsMatrixIndex(String prefs, int r, int c)
     {
-    	prefsMatrix[r][c] = prefs;
+    	String[] values = prefs.split(",");
+    	for(int i = 0; i < values.length; i++)
+    		prefsMatrix[r][c][i] = Integer.parseInt(values[i]);
+    	if(values.length < 6)
+    		for(int i = values.length; i < 6; i++)
+    			prefsMatrix[r][c][i] = 0;
     }
-	//gets the prefs at prefsMatrix at index [r][c]
-    public String getPrefsMatrixIndex(int r, int c)
+	//gets the prefs at prefsMatrix at index [r][c][index]
+    public int getPrefsMatrixIndex(int r, int c, int index)
     {
-    	return prefsMatrix[r][c];
+    	return prefsMatrix[r][c][index];
     }
 
 	//Prints out created teams.

@@ -33,11 +33,11 @@ public class FELiXGangTest
 
     FELiXGang sampleVar;
 
-    /*@Before
+    @Before
     public void initialize()
     {
-    	
-    }*/
+    	sampleVar = new FELiXGang(4,2);
+    }
 
     @Test
     public void testInizializer()
@@ -48,6 +48,8 @@ public class FELiXGangTest
     		assertTrue(test1.getTeamSize() == 3); //team size should be 3
 
     		assertTrue(test1.getClassSize() == 15); //class size should be 15
+
+    		assertTrue(test1.getNumTeams() == 5); //num teams should be 5
     	}
         catch (Exception e)
         {
@@ -60,6 +62,8 @@ public class FELiXGangTest
     		assertTrue(test2.getTeamSize() == 3); //team size should be 3
 
     		assertTrue(test2.getClassSize() == 14); //class size should be 14
+
+    		assertTrue(test2.getNumTeams() == 5); //num teams should be 5
     	}
         catch (Exception e)
         {
@@ -72,6 +76,8 @@ public class FELiXGangTest
     		assertTrue(test3.getTeamSize() == 3); //team size should be 3
 
     		assertTrue(test3.getClassSize() == 13); //class size should be 14
+
+    		assertTrue(test3.getNumTeams() == 5); //num teams should be 5
     	}
         catch (Exception e)
         {
@@ -80,7 +86,7 @@ public class FELiXGangTest
     }
 
     @Test 
-    public void testEmpty()
+    public void testFillMatrix()
     {
     	try
     	{
@@ -91,7 +97,17 @@ public class FELiXGangTest
     	}
         catch (Exception e)
         {
-            System.out.println("Matrix is empty at r=0,c=0.");
+            System.out.println("Matrix has improper name at r=0,c=0.");
+        }
+
+        try
+    	{
+    		String ans = "Natasha";
+    		assertEquals(ans,sampleVar.getTeamsMatrixIndex(1,0));
+    	}
+        catch (Exception e)
+        {
+            System.out.println("Matrix has improper name at r=1,c=0.");
         }
     } 
 	/*

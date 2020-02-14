@@ -88,16 +88,9 @@ public class FELiXGang
     	}
     }
     //adds name to teamsMatrix[r][c]
-   /* public void fillTeamsMatrixIndex(String name, int r, int c)
+    public void fillTeamsMatrixIndex(String name, int r, int c)
     {
     	teamsMatrix[r][c] = name;
-    }
-    */
-	//Main version commented out for testing version.
-    public String fillTeamsMatrixIndex(String name, int r, int c)
-    {
-    	teamsMatrix[r][c] = name;
-	return teamsMatrix[r][c];
     }
 	//gets the name at teamsMatrix at index [r][c]
     public String getTeamsMatrixIndex(int r, int c)
@@ -116,10 +109,13 @@ public class FELiXGang
     }
 
 	//Prints out created teams.
-	public void printTeams() {
-		for (int c = 0; c < numTeams; c++) {
+	public void printTeams() 
+	{
+		for (int c = 0; c < numTeams; c++) 
+		{
 			System.out.print("Team " + (c+1) + ": "); 
-			for (int r = 0; r < teamSize; r++) {
+			for (int r = 0; r < teamSize; r++) 
+			{
 				if(r < teamSize-1)
 					System.out.print(teamsMatrix[r][c] + ", ");	
 				else

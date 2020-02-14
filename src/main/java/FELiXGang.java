@@ -131,6 +131,44 @@ public class FELiXGang
 		}
 	}
 	
+	//Gauges the happiness of each team.
+	public void perfsPerTeam()
+	{
+		int happiness = 0;
+		for(int c = 0; c < numTeams; c++)
+		{
+			happiness = 0;
+			System.out.println("Team " + (c+1) + "Average Happiness: ");
+			if(teamsMatrix[teamSize-1][c] == "null")
+			{
+				for( int r = 0; r < teamSize-1; r++)
+				{
+					for(int r2 = 0; r2 < teamSize-1; r2++)
+					{
+						if(r2 != r)
+						{
+							happiness += perfsMatrix[r2][c];
+						}
+					}
+				}
+			}
+			else
+			{
+				for( int r = 0; r < teamSize; r++)
+				{
+					for(int r2 = 0; r2 < teamSize; r2++)
+					{
+						if(r2 != r)
+						{
+							happiness += perfsMatrix[r2][c];
+						}
+					}
+				}
+			}
+			System.out.print((happiness/teamSize));
+		}
+	}
+	
 	public static void main( String[] args )
     {
         System.out.println( "Hello, this is a sample file!" );

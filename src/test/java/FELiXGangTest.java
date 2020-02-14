@@ -96,34 +96,6 @@ public class FELiXGangTest
     } 
 	/*
 	//@Test
-	testTeamSize()
-	{
-		try
-		{
-			int ans = sampleVar.**methodName(proper utilization)**;
-			assertEquals(3,ans);
-		}
-		catch (Exception e)
-		{
-			System.out.println("Teams are not three deep.");
-		}
-	}
-	
-	//@Test
-	testTeamNumber()
-	{
-		try
-		{
-			int ans = sampleVar.**methodName(proper utilization)**;
-			assertEquals(5,ans);
-		}
-		catch (Exception e)
-		{
-			System.out.println("Not right amount of teams.");
-		}
-	}
-	
-	//@Test
 	testHappiness()
 	{
 		try

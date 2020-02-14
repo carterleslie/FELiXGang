@@ -134,7 +134,7 @@ public class FELiXGang
 		{
 			happiness = 0;
 			System.out.println("Team " + (c+1) + "Average Happiness: ");
-			if(teamsMatrix[teamSize-1][c] == null)
+			if(teamsMatrix[teamSize-1][c] == "null")
 			{
 				for( int r = 0; r < teamSize-1; r++)
 				{

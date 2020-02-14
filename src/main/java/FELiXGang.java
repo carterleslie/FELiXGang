@@ -87,7 +87,8 @@ public class FELiXGang
         	e.printStackTrace();
     	}
     }
-    //adds name to teamsMatrix[r][c]
+
+	//adds name to teamsMatrix[r][c]
     public void fillTeamsMatrixIndex(String name, int r, int c)
     {
     	teamsMatrix[r][c] = name;

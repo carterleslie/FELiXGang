@@ -143,29 +143,31 @@ public class FELiXGang
 			{
 				for( int r = 0; r < teamSize-1; r++)
 				{
-					for(int r2 = 0; r2 < teamSize-1; r2++)
+					for(int i = 0; i < 6; i++)
 					{
-						if(r2 != r)
+						if(i != r)
 						{
-							happiness += perfsMatrix[r2][c];
+							happiness += prefsMatrix[r][c][i];
 						}
 					}
 				}
+				System.out.print((happiness/(teamSize-1)));
 			}
 			else
 			{
 				for( int r = 0; r < teamSize; r++)
 				{
-					for(int r2 = 0; r2 < teamSize; r2++)
+					for(int i = 0; i < 6; i++)
 					{
-						if(r2 != r)
+						if(i != r)
 						{
-							happiness += perfsMatrix[r2][c];
+							happiness += prefsMatrix[r][c][i];
 						}
 					}
 				}
+				System.out.print((happiness/teamSize));
 			}
-			System.out.print((happiness/teamSize));
+			
 		}
 	}
 	

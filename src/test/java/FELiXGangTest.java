@@ -110,19 +110,26 @@ public class FELiXGangTest
             System.out.println("Matrix has improper name at r=1,c=0.");
         }
     } 
-	/*
-	//@Test
-	testHappiness()
+	
+	@Test
+	public void testHappiness()
 	{
 		try
 		{
-			double ans = sampleVar.**methodName(proper utilization)**;
-			assertEquals(5,ans);
+			FELiXGang test1 = new FELiXGang(4,2);
+
+            int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
+            int ans = 5;
+            assertEquals(ans,val);
+
+            int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
+            int ans2 = 5; //(5 + 6) / 2 = 5
+            assertEquals(ans2,val2);
 		}
 		catch (Exception e)
 		{
-			System.out.println("Not happy enough.");
+			System.out.println("Not correct happiness.");
 		}
 	}
-    */
+    
 }

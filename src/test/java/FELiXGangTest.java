@@ -42,94 +42,53 @@ public class FELiXGangTest
     @Test
     public void testInizializer()
     {
-    	try
-    	{
-    		FELiXGang test1 = new FELiXGang(15,3);
-    		assertTrue(test1.getTeamSize() == 3); //team size should be 3
+    	FELiXGang test1 = new FELiXGang(15,3);
+		assertTrue(test1.getTeamSize() == 3); //team size should be 3
 
-    		assertTrue(test1.getClassSize() == 15); //class size should be 15
+    	assertTrue(test1.getClassSize() == 15); //class size should be 15
 
-    		assertTrue(test1.getNumTeams() == 5); //num teams should be 5
-    	}
-        catch (Exception e)
-        {
-            System.out.println("ExceptionInInitializerError1");
-        }
+    	assertTrue(test1.getNumTeams() == 5); //num teams should be 5
 
-        try
-    	{
-    		FELiXGang test2 = new FELiXGang(14,3);
-    		assertTrue(test2.getTeamSize() == 3); //team size should be 3
+        
+    	FELiXGang test2 = new FELiXGang(14,3);
+		assertTrue(test2.getTeamSize() == 3); //team size should be 3
 
-    		assertTrue(test2.getClassSize() == 14); //class size should be 14
+		assertTrue(test2.getClassSize() == 14); //class size should be 14
 
-    		assertTrue(test2.getNumTeams() == 5); //num teams should be 5
-    	}
-        catch (Exception e)
-        {
-            System.out.println("ExceptionInInitializerError2");
-        }
+		assertTrue(test2.getNumTeams() == 5); //num teams should be 5
 
-        try
-    	{
-    		FELiXGang test3 = new FELiXGang(13,3);
-    		assertTrue(test3.getTeamSize() == 3); //team size should be 3
+    	FELiXGang test3 = new FELiXGang(13,3);
+		assertTrue(test3.getTeamSize() == 3); //team size should be 3
 
-    		assertTrue(test3.getClassSize() == 13); //class size should be 14
+    	assertTrue(test3.getClassSize() == 13); //class size should be 14
 
-    		assertTrue(test3.getNumTeams() == 5); //num teams should be 5
-    	}
-        catch (Exception e)
-        {
-            System.out.println("ExceptionInInitializerError3");
-        }
+		assertTrue(test3.getNumTeams() == 5); //num teams should be 5
     }
 
     @Test 
     public void testFillMatrix()
     {
-    	try
-    	{
-			String test = "help";
-			sampleVar.fillTeamsMatrixIndex(test,0,0);
-    		String ans = sampleVar.getTeamsMatrixIndex(0,0);
-    		assertEquals("help",ans);
-    	}
-        catch (Exception e)
-        {
-            System.out.println("Matrix has improper name at r=0,c=0.");
-        }
+		String test = "help";
+		sampleVar.fillTeamsMatrixIndex(test,0,0);
+    	String ans = sampleVar.getTeamsMatrixIndex(0,0);
+    	assertEquals("help",ans);
 
-        try
-    	{
-    		String ans = "Natasha";
-    		assertEquals(ans,sampleVar.getTeamsMatrixIndex(1,0));
-    	}
-        catch (Exception e)
-        {
-            System.out.println("Matrix has improper name at r=1,c=0.");
-        }
+    	String ans = "Natasha";
+		assertEquals(ans,sampleVar.getTeamsMatrixIndex(1,0));
     } 
 	
 	@Test
 	public void testHappiness()
 	{
-		try
-		{
-			FELiXGang test1 = new FELiXGang(4,2);
+		FELiXGang test1 = new FELiXGang(4,2);
 
-            int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
-            int ans = 5;
-            assertEquals(ans,val);
+        int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
+        int ans = 5;
+        assertEquals(ans,val);
 
-            int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
-            int ans2 = 5; //(5 + 6) / 2 = 5
-            assertEquals(ans2,val2);
-		}
-		catch (Exception e)
-		{
-			System.out.println("Not correct happiness.");
-		}
+        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
+        int ans2 = 5; //(5 + 6) / 2 = 5
+        assertEquals(ans2,val2);
 	}
     
 }

@@ -10,7 +10,9 @@
 
 import java.io.File; 
 import java.util.Scanner;
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException;  
+import java.io.IOException; 
+ 
 
 public class FELiXGang 
 {
@@ -25,7 +27,7 @@ public class FELiXGang
 	private int[] happinessIndex;
 
     //initializer for a FELiXGang
-    public FELiXGang(int cSize, int tSize)
+    public FELiXGang(String fileToInput, int cSize, int tSize)
     {
     	classSize = cSize;
     	teamSize = tSize;
@@ -39,8 +41,8 @@ public class FELiXGang
     	individualHappinessMatrix = new int[teamSize][numTeams];
     	teamHappiness = new int[numTeams];
     	idMatrix = new int[teamSize][numTeams];
-    	happinessIndex = new int[] {6,5,4,3,2,1};
-    	fillTeams("D:\\GitHub\\FELiXGang\\sampleTeam.txt");
+    	happinessIndex = new int[] {6,3,1,-1,-3,-6};
+    	fillTeams(fileToInput);
     	calcHappiness();
     	prefsPerTeam();
     }
@@ -150,31 +152,16 @@ public class FELiXGang
     {
     	return idMatrix[r][c];
     }
-	//Prints out created teams.
-	public void printTeams() 
-	{
-		for (int c = 0; c < numTeams; c++) 
-		{
-			System.out.print("Team " + (c+1) + ": "); 
-			for (int r = 0; r < teamSize; r++) 
-			{
-				if(r < teamSize-1)
-					System.out.print(teamsMatrix[r][c] + ", ");	
-				else
-					System.out.println(teamsMatrix[r][c]);
-			}
-			System.out.println("");
-		}
-	}
-	
+	//calculates the happiness for eahc individual and puts them in the 
+	//individual happiness array
 	public void calcHappiness()
 	{
-		int happiness = 0;
+		int happiness = 10;
 		for (int c = 0; c < numTeams; c++)
 		{
 			for(int r = 0; r < teamSize; r++)
 			{
-				happiness = 0;
+				happiness = 10;
 				if(idMatrix[r][c] != 0)
 				{
 					for(int r2 = 0; r2 < teamSize; r2++)
@@ -193,7 +180,6 @@ public class FELiXGang
 			}
 		}
 	}
-
 	//Gauges the happiness of each team.
 	public void prefsPerTeam()
 	{
@@ -219,11 +205,41 @@ public class FELiXGang
 			//System.out.print(teamHappiness[c]);
 		}
 	}
-	
+	//Prints out created teams.
+	public void printTeams() 
+	{
+		for (int c = 0; c < numTeams; c++) 
+		{
+			System.out.print("Team " + (c+1) + ": "); 
+			for (int r = 0; r < teamSize; r++) 
+			{
+				if(r < teamSize-1)
+					System.out.print(teamsMatrix[r][c] + ", ");	
+				else
+					System.out.print(teamsMatrix[r][c]);
+			}
+			System.out.println(" " + getTeamHappinessIndex(c));
+			System.out.println("");
+		}
+	}
 	public static void main( String[] args )
     {
-        System.out.println( "Hello, this is a sample file!" );
-        FELiXGang t = new FELiXGang(4,2);
+        System.out.println( "Hello, this is the FELiXGang Happy teams file, please enter inputs to being!" );
+        Scanner in = new Scanner(System.in);
+        System.out.print("File to read from: ");
+        String inputFile = in.nextLine();
+        System.out.print("Team size: ");
+        int userTeamSize = in.nextInt();
+        System.out.print("Verbose: ");
+        int verbose = in.nextInt();
+        System.out.print("Number of swaps to attempt: ");
+        int numAttempts = in.nextInt();
+        System.out.print("Number of times to perform the number of swaps: ");
+        int numPerformSwaps = in.nextInt();
+        System.out.print("Percent of suboptimal swaps: ");
+        int suboptimalPercent = in.nextInt();
+        System.out.print("");
+        FELiXGang t = new FELiXGang(inputFile, 4,userTeamSize);
         t.printTeams();
     }
 }

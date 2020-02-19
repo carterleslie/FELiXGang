@@ -73,7 +73,7 @@ public class FELiXGangTest
     	String ans = sampleVar.getTeamsMatrixIndex(0,0);
     	assertEquals("help",ans);
 
-    	String ans = "Natasha";
+    	ans = "Natasha";
 		assertEquals(ans,sampleVar.getTeamsMatrixIndex(1,0));
     } 
 	
@@ -82,12 +82,12 @@ public class FELiXGangTest
 	{
 		FELiXGang test1 = new FELiXGang(4,2);
 
-        int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
-        int ans = 5;
-        assertEquals(ans,val);
+        int val1 = test1.getIndividualHappinessMatrixIndex(0,0); //should be 13
+        int ans1 = 13;
+        assertEquals(ans1,val1);
 
-        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
-        int ans2 = 5; //(5 + 6) / 2 = 5
+        int val2 = test1.getTeamHappinessIndex(0); // should be (13 + 16) / 2, which is 14 lol
+        int ans2 = 14; //(13 + 16) / 2 = 14
         assertEquals(ans2,val2);
 	}
     

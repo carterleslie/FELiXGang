@@ -40,6 +40,12 @@ public class FELiXGang
     	teamHappiness = new int[numTeams];
     	idMatrix = new int[teamSize][numTeams];
     	happinessIndex = new int[] {6,5,4,3,2,1};
+	/*
+	Scanner in = new Scanner(System.in);
+	System.out.println("What is the file name?");	//Should work for allowing file input? Leaving commented out for now.
+	String input = in.nextLine();
+	fillTeams(input);
+	*/
     	fillTeams("D:\\GitHub\\FELiXGang\\sampleTeam.txt");
     	calcHappiness();
     	prefsPerTeam();

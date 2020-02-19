@@ -41,6 +41,7 @@ public class FELiXGang
     	individualHappinessMatrix = new int[teamSize][numTeams];
     	teamHappiness = new int[numTeams];
     	idMatrix = new int[teamSize][numTeams];
+
     	happinessIndex = new int[] {6,3,1,-1,-3,-6};
     	fillTeams(fileToInput);
     	calcHappiness();

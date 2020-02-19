@@ -30,7 +30,7 @@ public class FELiXGangTest
     		System.out.println("Starting test: " + description.getMethodName());
     	    }
     	};
-
+/*
     FELiXGang sampleVar;
 
     @Before
@@ -38,11 +38,11 @@ public class FELiXGangTest
     {
     	sampleVar = new FELiXGang(4,2);
     }
-
+*/
     @Test
     public void testInizializer()
     {
-    	FELiXGang test1 = new FELiXGang(15,3);
+    	FELiXGang test1 = new FELiXGang("sampleTeam.txt",15,3);
 		assertTrue(test1.getTeamSize() == 3); //team size should be 3
 
     	assertTrue(test1.getClassSize() == 15); //class size should be 15
@@ -50,14 +50,14 @@ public class FELiXGangTest
     	assertTrue(test1.getNumTeams() == 5); //num teams should be 5
 
         
-    	FELiXGang test2 = new FELiXGang(14,3);
+    	FELiXGang test2 = new FELiXGang("sampleTeam.txt",14,3);
 		assertTrue(test2.getTeamSize() == 3); //team size should be 3
 
 		assertTrue(test2.getClassSize() == 14); //class size should be 14
 
 		assertTrue(test2.getNumTeams() == 5); //num teams should be 5
 
-    	FELiXGang test3 = new FELiXGang(13,3);
+    	FELiXGang test3 = new FELiXGang("sampleTeam.txt",13,3);
 		assertTrue(test3.getTeamSize() == 3); //team size should be 3
 
     	assertTrue(test3.getClassSize() == 13); //class size should be 14
@@ -68,27 +68,27 @@ public class FELiXGangTest
     @Test 
     public void testFillMatrix()
     {
+		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
 		String test = "help";
-		sampleVar.fillTeamsMatrixIndex(test,0,0);
-    	String ans = sampleVar.getTeamsMatrixIndex(0,0);
+		test1.fillTeamsMatrixIndex(test,0,0);
+    	String ans = test1.getTeamsMatrixIndex(0,0);
     	assertEquals("help",ans);
 
     	ans = "Natasha";
-		assertEquals(ans,sampleVar.getTeamsMatrixIndex(1,0));
+		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));
     } 
 	
 	@Test
 	public void testHappiness()
 	{
-		FELiXGang test1 = new FELiXGang(4,2);
+		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
 
-        int val1 = test1.getIndividualHappinessMatrixIndex(0,0); //should be 13
+        int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
         int ans1 = 13;
-        assertEquals(ans1,val1);
+        assertEquals(ans1,val);
 
-        int val2 = test1.getTeamHappinessIndex(0); // should be (13 + 16) / 2, which is 14 lol
+        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
         int ans2 = 14; //(13 + 16) / 2 = 14
         assertEquals(ans2,val2);
-	}
-    
+	}   
 }

@@ -83,11 +83,11 @@ public class FELiXGangTest
 		FELiXGang test1 = new FELiXGang(4,2);
 
         int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
-        int ans = 5;
+        int ans = 13;
         assertEquals(ans,val);
 
         int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
-        int ans2 = 5; //(5 + 6) / 2 = 5
+        int ans2 = 14; //(13 + 16) / 2 = 14
         assertEquals(ans2,val2);
 	}
     

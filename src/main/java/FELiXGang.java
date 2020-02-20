@@ -44,8 +44,8 @@ public class FELiXGang
 
     	happinessIndex = new int[] {6,3,1,-1,-3,-6};
     	fillTeams(fileToInput);
-    	calcHappiness();
-    	prefsPerTeam();
+    	calcIndividualHappiness();
+    	calcTeamHappiness();
     }
     //gets the teamSize
     public int getTeamSize()
@@ -133,7 +133,7 @@ public class FELiXGang
     	return teamsMatrix[r][c];
     }
 	
-	//gets the prefs at prefsMatrix at index [r][c][index]
+	//gets the pref at prefsMatrix at index [r][c][index]
     public int getPrefsMatrixIndex(int r, int c, int index)
     {
     	return prefsMatrix[r][c][index];
@@ -155,7 +155,7 @@ public class FELiXGang
     }
 	//calculates the happiness for eahc individual and puts them in the 
 	//individual happiness array
-	public void calcHappiness()
+	public void calcIndividualHappiness()
 	{
 		int happiness = 10;
 		for (int c = 0; c < numTeams; c++)
@@ -182,7 +182,7 @@ public class FELiXGang
 		}
 	}
 	//Gauges the happiness of each team.
-	public void prefsPerTeam()
+	public void calcTeamHappiness()
 	{
 		int happiness = 0;
 		int localTeamSize = 0;
@@ -205,6 +205,31 @@ public class FELiXGang
 			teamHappiness[c] = (happiness/localTeamSize);
 			//System.out.print(teamHappiness[c]);
 		}
+	}
+	/*
+	private int classSize; //size of the entire "class" of students
+	private int teamSize; //size of the teams, designated by user
+	private int numTeams; //number of teams, calculated with the above two ints in the initializer
+	private String[][] teamsMatrix; //the matrix of all names of the team members in respective teams
+	private int[][][] prefsMatrix; //the matrix of all prefs of the team members, parallel to teamsMatrix
+	private int[][] individualHappinessMatrix;
+	private int[] teamHappiness;
+	private int[][] idMatrix;
+	private int[] happinessIndex;
+	*/
+	public void swapPeople(int r1, int c1, int r2, int c2)
+	{
+		String tempName = teamsMatrix[r1][c1];
+		teamsMatrix[r1][c1] = teamsMatrix[r2][c2];
+		teamsMatrix[r2][c2] = tempName;
+		int[] tempArr = prefsMatrix[r1][c1];
+		prefsMatrix[r1][c1] = prefsMatrix[r2][c2];
+		prefsMatrix[r2][c2] = tempArr;
+		int tempID = idMatrix[r1][c1];
+		idMatrix[r1][c1] = idMatrix[r2][c2];
+		idMatrix[r2][c2] = tempID;
+		calcIndividualHappiness();
+		calcTeamHappiness();
 	}
 	//Prints out created teams.
 	public void printTeams() 

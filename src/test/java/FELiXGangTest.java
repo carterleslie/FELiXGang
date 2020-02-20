@@ -98,12 +98,12 @@ public class FELiXGangTest
 		
 		String ans = "Natasha";
 		String ans2 = "Bubba";
-		assertEquals(ans,getTeamsMatrixIndex(1,0));	//Making sure it's in the right place first...
-		assertEquals(ans2,getTeamsMatrixIndex(0,0));
+		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));	//Making sure it's in the right place first...
+		assertEquals(ans2,test1.getTeamsMatrixIndex(0,0));
 		
-		test1.swapPeople(0,1,0,0);
-		assertEquals(ans,getTeamsMatrixIndex(0,0)); //And now testing that it's swapped.
-		assertEquals(ans2,getTeamsMatrixIndex(1,0));
+		test1.swapPeople(0,0,1,0);
+		assertEquals(ans,test1.getTeamsMatrixIndex(0,0)); //And now testing that it's swapped.
+		assertEquals(ans2,test1.getTeamsMatrixIndex(1,0));
 	}
 	
 	@Test
@@ -114,10 +114,10 @@ public class FELiXGangTest
 		
 		test1.swapPeople(0,0,0,1);	//Swap Bubba and Roland.
 		int val = test1.getIndividualHappinessMatrixIndex(0,0); //Should be 10, Roland doesn't care about Natasha
-        	int ans1 = 10;
+        	int ans1 = 4;
         	assertEquals(ans1,val);
 		
-		int ans2 = 10;
+		int ans2 = 7;
 		int val2 = test1.getTeamHappinessIndex(0);//Should also be 10, neither of them care about each other.
 		assertEquals(ans2,val2);
 	}

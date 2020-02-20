@@ -250,7 +250,18 @@ public class FELiXGang
 	}
 	public static void main( String[] args )
     {
-        System.out.println( "Hello, this is the FELiXGang Happy teams file, please enter inputs to being!" );
+    	/* if (args.length > 0) 
+        { 
+            for (String val:args) 
+            {
+            	System.out.println(val);
+            }
+        } 
+        else
+            System.out.println("No command line "+ 
+                               "arguments found.");
+    	*/       
+    	System.out.println( "Hello, this is the FELiXGang Happy teams file, please enter inputs to being!" );
         Scanner in = new Scanner(System.in);
         System.out.print("File to read from: ");
         String inputFile = in.nextLine();

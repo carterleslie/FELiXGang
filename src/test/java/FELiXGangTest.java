@@ -69,10 +69,9 @@ public class FELiXGangTest
     public void testFillMatrix()
     {
 		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
-		String test = "help";
-		test1.fillTeamsMatrixIndex(test,0,0);
-    	String ans = test1.getTeamsMatrixIndex(0,0);
-    	assertEquals("help",ans);
+		String test = "Bubba";
+        String ans = test1.getTeamsMatrixIndex(0,0);
+    	assertEquals("Bubba",ans);
 
     	ans = "Natasha";
 		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));
@@ -84,11 +83,11 @@ public class FELiXGangTest
 		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
 
         int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
-        int ans1 = 13;
+        int ans1 = 4;
         assertEquals(ans1,val);
 
-        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 6) / 2, which is 5 lol
-        int ans2 = 14; //(13 + 16) / 2 = 14
+        int val2 = test1.getTeamHappinessIndex(0); // should be (4 + 6) / 2, which is 5
+        int ans2 = 5; //(4 + 6) / 2 = 5
         assertEquals(ans2,val2);
 	}   
 	@Test
@@ -113,12 +112,12 @@ public class FELiXGangTest
 		
 		
 		test1.swapPeople(0,0,0,1);	//Swap Bubba and Roland.
-		int val = test1.getIndividualHappinessMatrixIndex(0,0); //Should be 10, Roland doesn't care about Natasha
-        	int ans1 = 4;
-        	assertEquals(ans1,val);
+		int val = test1.getIndividualHappinessMatrixIndex(0,0); //Should be 1
+        int ans1 = 1;
+        assertEquals(ans1,val);
 		
-		int ans2 = 7;
-		int val2 = test1.getTeamHappinessIndex(0);//Should also be 10, neither of them care about each other.
+		int ans2 = 0;
+		int val2 = test1.getTeamHappinessIndex(0); //Should also be 0
 		assertEquals(ans2,val2);
 	}
 }

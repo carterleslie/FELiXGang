@@ -19,16 +19,22 @@ public class FELiXGang
 	private int classSize; //size of the entire "class" of students
 	private int teamSize; //size of the teams, designated by user
 	private int numTeams; //number of teams, calculated with the above two ints in the initializer
+	private int verbose; //level of debug to output
+	private int numSwaps; //number of swaps to attempt
+	private int numSets; //number of best sets to create/attempt
+	private int badSwapChance; //the chances of keeping a bad swap
 	private String[][] teamsMatrix; //the matrix of all names of the team members in respective teams
 	private int[][][] prefsMatrix; //the matrix of all prefs of the team members, parallel to teamsMatrix
-	private int[][] individualHappinessMatrix;
+	private int[][] individualHappinessMatrix; 
 	private int[] teamHappiness;
 	private int[][] idMatrix;
 	private int[] happinessIndex;
+	private int[] unhappinessIndex;
 
     //initializer for a FELiXGang
     public FELiXGang(String fileToInput, int cSize, int tSize)
     {
+    	//String fileText;
     	classSize = cSize;
     	teamSize = tSize;
 
@@ -42,7 +48,8 @@ public class FELiXGang
     	teamHappiness = new int[numTeams];
     	idMatrix = new int[teamSize][numTeams];
 
-    	happinessIndex = new int[] {6,3,1,-1,-3,-6};
+    	happinessIndex = new int[] {6,4,3,3,1,1};
+    	unhappinessIndex = new int[] {-1,-1,-3,-3,-4,-6};
     	fillTeams(fileToInput);
     	calcIndividualHappiness();
     	calcTeamHappiness();
@@ -112,12 +119,12 @@ public class FELiXGang
     }
 
 	//adds name to teamsMatrix[r][c]
-    public void fillTeamsMatrixIndex(String name, int r, int c)
+    private void fillTeamsMatrixIndex(String name, int r, int c)
     {
     	teamsMatrix[r][c] = name;
     }
     //adds prefs to prefsMatrix at index [r][c]
-    public void fillPrefsMatrixIndex(String prefs, int r, int c)
+    private void fillPrefsMatrixIndex(String prefs, int r, int c)
     {
     	String[] values = prefs.split(",");
     	for(int i = 0; i < values.length; i++)
@@ -155,14 +162,14 @@ public class FELiXGang
     }
 	//calculates the happiness for eahc individual and puts them in the 
 	//individual happiness array
-	public void calcIndividualHappiness()
+	private void calcIndividualHappiness()
 	{
-		int happiness = 10;
+		int happiness = 0;
 		for (int c = 0; c < numTeams; c++)
 		{
 			for(int r = 0; r < teamSize; r++)
 			{
-				happiness = 10;
+				happiness = 0;
 				if(idMatrix[r][c] != 0)
 				{
 					for(int r2 = 0; r2 < teamSize; r2++)
@@ -182,7 +189,7 @@ public class FELiXGang
 		}
 	}
 	//Gauges the happiness of each team.
-	public void calcTeamHappiness()
+	private void calcTeamHappiness()
 	{
 		int happiness = 0;
 		int localTeamSize = 0;
@@ -206,17 +213,6 @@ public class FELiXGang
 			//System.out.print(teamHappiness[c]);
 		}
 	}
-	/*
-	private int classSize; //size of the entire "class" of students
-	private int teamSize; //size of the teams, designated by user
-	private int numTeams; //number of teams, calculated with the above two ints in the initializer
-	private String[][] teamsMatrix; //the matrix of all names of the team members in respective teams
-	private int[][][] prefsMatrix; //the matrix of all prefs of the team members, parallel to teamsMatrix
-	private int[][] individualHappinessMatrix;
-	private int[] teamHappiness;
-	private int[][] idMatrix;
-	private int[] happinessIndex;
-	*/
 	public void swapPeople(int r1, int c1, int r2, int c2)
 	{
 		String tempName = teamsMatrix[r1][c1];
@@ -250,33 +246,52 @@ public class FELiXGang
 	}
 	public static void main( String[] args )
     {
-    	/* if (args.length > 0) 
+    	int userTeamSize = 2;
+        int verbose = 0;
+        int numPerformSwaps = 10000;
+        int numAttempts = 20;
+        int suboptimalPercent = 2;
+    	if (args.length > 0) 
         { 
-            for (String val:args) 
+            for (int i = 0; i < args.length; i++) 
             {
-            	System.out.println(val);
+            	if(args[i].equals("-t"))
+            	{
+            		i++;
+            		userTeamSize = Integer.parseInt(args[i]);
+            	}
+            	if(args[i].equals("-v"))
+            	{
+            		i++;
+            		verbose = Integer.parseInt(args[i]);
+            	}
+            	if(args[i].equals("-n"))
+            	{
+            		i++;
+            		numPerformSwaps = Integer.parseInt(args[i]);
+            	}
+            	if(args[i].equals("-l"))
+            	{
+            		i++;
+            		numAttempts = Integer.parseInt(args[i]);
+            	}
+            	if(args[i].equals("-r"))
+            	{
+            		i++;
+            		suboptimalPercent = Integer.parseInt(args[i]);
+            	}
             }
         } 
         else
-            System.out.println("No command line "+ 
-                               "arguments found.");
-    	*/       
-    	System.out.println( "Hello, this is the FELiXGang Happy teams file, please enter inputs to being!" );
-        Scanner in = new Scanner(System.in);
-        System.out.print("File to read from: ");
-        String inputFile = in.nextLine();
-        System.out.print("Team size: ");
-        int userTeamSize = in.nextInt();
-        System.out.print("Verbose: ");
-        int verbose = in.nextInt();
-        System.out.print("Number of swaps to attempt: ");
-        int numAttempts = in.nextInt();
-        System.out.print("Number of times to perform the number of swaps: ");
-        int numPerformSwaps = in.nextInt();
-        System.out.print("Percent of suboptimal swaps: ");
-        int suboptimalPercent = in.nextInt();
-        System.out.print("");
-        FELiXGang t = new FELiXGang(inputFile, 4,userTeamSize);
+            System.out.println("No command line arguments found.");
+        System.out.println(userTeamSize);
+        System.out.println(verbose);
+        System.out.println(numPerformSwaps);
+        System.out.println(numAttempts);
+        System.out.println(suboptimalPercent);
+        String inputFile = "sampleTeam.txt";
+        //inputFile = In.readString();
+        FELiXGang t = new FELiXGang(inputFile, 4, userTeamSize);
         t.printTeams();
     }
 }

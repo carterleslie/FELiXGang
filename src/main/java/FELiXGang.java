@@ -8,11 +8,11 @@
 *
 ******************************************************************************/
 
+import java.util.*;
 import java.io.File; 
 import java.util.Scanner;
-import java.io.FileNotFoundException;  
-import java.io.IOException; 
- 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class FELiXGang 
 {
@@ -32,11 +32,14 @@ public class FELiXGang
 	private int[] unhappinessIndex;
 
     //initializer for a FELiXGang
-    public FELiXGang(String fileToInput, int cSize, int tSize)
+    public FELiXGang(String allPeople, int tSize, int v, int n, int l, int r)
     {
-    	//String fileText;
-    	classSize = cSize;
+    	classSize = allPeople.split(" ").length;
     	teamSize = tSize;
+    	verbose = v;
+    	numSwaps = n;
+    	numSets = l;
+    	badSwapChance = r;
 
     	if(classSize % teamSize == 0)
     		numTeams = classSize / teamSize;
@@ -48,9 +51,9 @@ public class FELiXGang
     	teamHappiness = new int[numTeams];
     	idMatrix = new int[teamSize][numTeams];
 
-    	happinessIndex = new int[] {6,4,3,3,1,1};
-    	unhappinessIndex = new int[] {-1,-1,-3,-3,-4,-6};
-    	fillTeams(fileToInput);
+    	happinessIndex = new int[] {7,5,3,1,1,1};
+    	unhappinessIndex = new int[] {-1,-1,-1,-3,-5,-7};
+    	fillTeams(allPeople);
     	calcIndividualHappiness();
     	calcTeamHappiness();
     }
@@ -73,7 +76,7 @@ public class FELiXGang
     //fills them in a way that only leaves the end index of a column open as null when there aren't
     //enough people in the class.
     //fills all of [0][0-numTeams], then [1][0-numTeams] such that only the far right of the bottom row is open at the end
-    private void fillTeams(String fileName)
+    private void fillTeams(String peopleString)
     {
     	for (int c = 0; c < numTeams; c++)
 		{
@@ -83,39 +86,30 @@ public class FELiXGang
 			}
 		}
 
-    	File file = new File(fileName);
-    
-    	try 
-    	{
-        	Scanner sc = new Scanner(file);
-        	int r = 0, c = 0;
-        	int id = 1;
-	    	while (sc.hasNextLine()) 
-	     	{
-	     		String nextLine = sc.nextLine();
-	     		String nameAndPrefs[] = nextLine.split(",",2);
+    	String people[] = peopleString.split(" ");
+      
+        int r = 0, c = 0;
+        int id = 1;
+	    for(int i = 0; i < classSize; i++)
+	    {
+	     	String nameAndPrefs[] = people[i].split(",",2);
 
-	     		fillTeamsMatrixIndex(nameAndPrefs[0], r, c);
-	     		if(nextLine.indexOf(',') >= 0)
-	     			fillPrefsMatrixIndex(nameAndPrefs[1], r, c);
-	     		else
-	     			fillPrefsMatrixIndex("0,0,0,0,0,0", r, c);
-	     		idMatrix[r][c] = id;
-	     		if(c < numTeams-1)
-	     			c++;
-	     		else
-	     		{
-	     			r++;
-	     			c = 0;
-	     		}
-	     		id++;
+	     	fillTeamsMatrixIndex(nameAndPrefs[0], r, c);
+	     	if(people[i].indexOf(',') >= 0)
+	     		fillPrefsMatrixIndex(nameAndPrefs[1], r, c);
+	     	else
+	     		fillPrefsMatrixIndex("0,0,0,0,0,0", r, c);
+	     	idMatrix[r][c] = i+1;
+	     	if(c < numTeams-1)
+	     		c++;
+	     	else
+	     	{
+	     		r++;
+	     		c = 0;
 	     	}
-	     	sc.close();
-    	} 
-    	catch (FileNotFoundException e) 
-    	{
-        	e.printStackTrace();
-    	}
+	     	id++;
+	    }
+	     	
     }
 
 	//adds name to teamsMatrix[r][c]
@@ -246,11 +240,11 @@ public class FELiXGang
 	}
 	public static void main( String[] args )
     {
-    	int userTeamSize = 2;
-        int verbose = 0;
-        int numPerformSwaps = 10000;
-        int numAttempts = 20;
-        int suboptimalPercent = 2;
+    	int t = 2;
+        int v = 0;
+        int n = 10000;
+        int l = 20;
+        int r = 2;
     	if (args.length > 0) 
         { 
             for (int i = 0; i < args.length; i++) 
@@ -258,40 +252,37 @@ public class FELiXGang
             	if(args[i].equals("-t"))
             	{
             		i++;
-            		userTeamSize = Integer.parseInt(args[i]);
+            		t = Integer.parseInt(args[i]);
             	}
             	if(args[i].equals("-v"))
             	{
             		i++;
-            		verbose = Integer.parseInt(args[i]);
+            		v = Integer.parseInt(args[i]);
             	}
             	if(args[i].equals("-n"))
             	{
             		i++;
-            		numPerformSwaps = Integer.parseInt(args[i]);
+            		n = Integer.parseInt(args[i]);
             	}
             	if(args[i].equals("-l"))
             	{
             		i++;
-            		numAttempts = Integer.parseInt(args[i]);
+            		l = Integer.parseInt(args[i]);
             	}
             	if(args[i].equals("-r"))
             	{
             		i++;
-            		suboptimalPercent = Integer.parseInt(args[i]);
+            		r = Integer.parseInt(args[i]);
             	}
             }
         } 
-        else
-            System.out.println("No command line arguments found.");
-        System.out.println(userTeamSize);
-        System.out.println(verbose);
-        System.out.println(numPerformSwaps);
-        System.out.println(numAttempts);
-        System.out.println(suboptimalPercent);
-        String inputFile = "sampleTeam.txt";
-        //inputFile = In.readString();
-        FELiXGang t = new FELiXGang(inputFile, 4, userTeamSize);
-        t.printTeams();
+  		Scanner scanner = new Scanner(System.in);
+    	String str = "";
+		while(scanner.hasNext())
+		{
+			str = str + scanner.next() + " ";
+		}
+		FELiXGang test = new FELiXGang(str,t,v,n,l,r);
+        test.printTeams();
     }
 }

@@ -8,6 +8,9 @@
 *
 ******************************************************************************/
 
+import java.io.File; 
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.*;
@@ -22,6 +25,44 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FELiXGangTest
 {
+    private static String sampleTeam;
+    private static String initializerTest1;
+    private static String initializerTest2;
+    private static String initializerTest3;
+
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception 
+    {
+        File file = new File("sampleTeam.txt");
+        Scanner sc = new Scanner(file);
+        sampleTeam = "";
+        while(sc.hasNext())
+        {
+            sampleTeam = sampleTeam + sc.next() + " ";
+        }
+        sc.close();
+        file = new File("initializerTest1.txt");
+        sc = new Scanner(file);
+        initializerTest1 = "";
+        while(sc.hasNext())
+        {
+            initializerTest1 = initializerTest1 + sc.next() + " ";
+        }
+        file = new File("initializerTest2.txt");
+        sc = new Scanner(file);
+        initializerTest2 = "";
+        while(sc.hasNext())
+        {
+            initializerTest2 = initializerTest2 + sc.next() + " ";
+        }
+        file = new File("initializerTest3.txt");
+        sc = new Scanner(file);
+        initializerTest3 = "";
+        while(sc.hasNext())
+        {
+            initializerTest3 = initializerTest3 + sc.next() + " ";
+        }
+    }
 
 	@Rule
     public TestRule watcher =
@@ -42,58 +83,59 @@ public class FELiXGangTest
     @Test
     public void testInizializer()
     {
-    	FELiXGang test1 = new FELiXGang("sampleTeam.txt",15,3);
-		assertTrue(test1.getTeamSize() == 3); //team size should be 3
+    	FELiXGang test1 = new FELiXGang(initializerTest1, 3, 0, 0, 0, 0);
+		assertEquals(3, test1.getTeamSize()); //team size should be 3
 
-    	assertTrue(test1.getClassSize() == 15); //class size should be 15
+    	assertEquals(15, test1.getClassSize()); //class size should be 15
 
-    	assertTrue(test1.getNumTeams() == 5); //num teams should be 5
+    	assertEquals(5, test1.getNumTeams()); //num teams should be 5
 
         
-    	FELiXGang test2 = new FELiXGang("sampleTeam.txt",14,3);
-		assertTrue(test2.getTeamSize() == 3); //team size should be 3
+    	FELiXGang test2 = new FELiXGang(initializerTest2, 3, 0, 0, 0, 0);
+		assertEquals(3, test2.getTeamSize()); //team size should be 3
 
-		assertTrue(test2.getClassSize() == 14); //class size should be 14
+		assertEquals(14, test2.getClassSize()); //class size should be 14
 
-		assertTrue(test2.getNumTeams() == 5); //num teams should be 5
+		assertEquals(5, test2.getNumTeams()); //num teams should be 5
 
-    	FELiXGang test3 = new FELiXGang("sampleTeam.txt",13,3);
-		assertTrue(test3.getTeamSize() == 3); //team size should be 3
+    	FELiXGang test3 = new FELiXGang(initializerTest3, 3, 0, 0, 0, 0);
+		assertEquals(3, test3.getTeamSize()); //team size should be 3
 
-    	assertTrue(test3.getClassSize() == 13); //class size should be 14
+    	assertEquals(13, test3.getClassSize()); //class size should be 13
 
-		assertTrue(test3.getNumTeams() == 5); //num teams should be 5
+		assertEquals(5, test3.getNumTeams()); //num teams should be 5
     }
 
     @Test 
     public void testFillMatrix()
     {
-		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
-		String test = "Bubba";
-        String ans = test1.getTeamsMatrixIndex(0,0);
-    	assertEquals("Bubba",ans);
+		FELiXGang test = new FELiXGang(sampleTeam, 2, 0, 0, 0, 0);
+		String ans1 = "Bubba";
+        String test1 = test.getTeamsMatrixIndex(0,0);
+    	assertEquals(ans1,test1);
 
-    	ans = "Natasha";
-		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));
+    	String ans2 = "Natasha";
+        String test2 = test.getTeamsMatrixIndex(1,0);
+		assertEquals(ans2,test2);
     } 
 	
 	@Test
 	public void testHappiness()
 	{
-		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
+		FELiXGang test1 = new FELiXGang(sampleTeam, 2, 0, 0, 0, 0);
 
         int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
-        int ans1 = 4;
+        int ans1 = 5;
         assertEquals(ans1,val);
 
-        int val2 = test1.getTeamHappinessIndex(0); // should be (4 + 6) / 2, which is 5
-        int ans2 = 5; //(4 + 6) / 2 = 5
+        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 7) / 2, which is 6
+        int ans2 = 6; //(5 + 7) / 2 = 6
         assertEquals(ans2,val2);
 	}   
 	@Test
 	public void testSwap()
 	{
-		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
+		FELiXGang test1 = new FELiXGang(sampleTeam, 2, 0, 0, 0, 0);
 		
 		String ans = "Natasha";
 		String ans2 = "Bubba";
@@ -108,8 +150,7 @@ public class FELiXGangTest
 	@Test
 	public void testSwapHappiness()
 	{
-		FELiXGang test1 = new FELiXGang("sampleTeam.txt",4,2);
-		
+		FELiXGang test1 = new FELiXGang(sampleTeam, 2, 0, 0, 0, 0);
 		
 		test1.swapPeople(0,0,0,1);	//Swap Bubba and Roland.
 		int val = test1.getIndividualHappinessMatrixIndex(0,0); //Should be 1
@@ -117,7 +158,7 @@ public class FELiXGangTest
         assertEquals(ans1,val);
 		
 		int ans2 = 0;
-		int val2 = test1.getTeamHappinessIndex(0); //Should also be 0
+		int val2 = test1.getTeamHappinessIndex(0); //Should be 0
 		assertEquals(ans2,val2);
 	}
 }

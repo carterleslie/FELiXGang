@@ -29,6 +29,7 @@ public class FELiXGangTest
     private static String initializerTest1;
     private static String initializerTest2;
     private static String initializerTest3;
+    private static String negativeHappyTest;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception 
@@ -48,6 +49,7 @@ public class FELiXGangTest
         {
             initializerTest1 = initializerTest1 + sc.next() + " ";
         }
+        sc.close();
         file = new File("initializerTest2.txt");
         sc = new Scanner(file);
         initializerTest2 = "";
@@ -55,6 +57,7 @@ public class FELiXGangTest
         {
             initializerTest2 = initializerTest2 + sc.next() + " ";
         }
+        sc.close();
         file = new File("initializerTest3.txt");
         sc = new Scanner(file);
         initializerTest3 = "";
@@ -62,6 +65,15 @@ public class FELiXGangTest
         {
             initializerTest3 = initializerTest3 + sc.next() + " ";
         }
+        sc.close();
+        file = new File("negativeHappyTest.txt");
+        sc = new Scanner(file);
+        negativeHappyTest = "";
+        while(sc.hasNext())
+        {
+            negativeHappyTest = negativeHappyTest + sc.next() + " ";
+        }
+        sc.close();
     }
 
 	@Rule
@@ -128,8 +140,8 @@ public class FELiXGangTest
         int ans1 = 5;
         assertEquals(ans1,val);
 
-        int val2 = test1.getTeamHappinessIndex(0); // should be (5 + 7) / 2, which is 6
-        int ans2 = 6; //(5 + 7) / 2 = 6
+        int val2 = test1.getTeamHappinessIndex(0); // should be 5 + 7, which is 12
+        int ans2 = 12; //5 + 7 = 12
         assertEquals(ans2,val2);
 	}   
 	@Test
@@ -157,8 +169,21 @@ public class FELiXGangTest
         int ans1 = 1;
         assertEquals(ans1,val);
 		
-		int ans2 = 0;
-		int val2 = test1.getTeamHappinessIndex(0); //Should be 0
+		int ans2 = 1;
+		int val2 = test1.getTeamHappinessIndex(0); //Should be 1
 		assertEquals(ans2,val2);
 	}
+    @Test
+    public void testNegativeHappy()
+    {
+        FELiXGang testNegative = new FELiXGang(negativeHappyTest, 4,0,0,0,0);
+
+        int test1 = testNegative.getIndividualHappinessMatrixIndex(3,0); //should be -15
+        int ans1 = -15;
+        assertEquals(ans1,test1);
+
+        int test2 = testNegative.getTeamHappinessIndex(0); //should be -46
+        int ans2 = -46;
+        assertEquals(ans2,test2);
+    }
 }

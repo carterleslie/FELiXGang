@@ -33,6 +33,4 @@ Test Functions
 ```testTotalHappinessSwap()``` Checks the total happines of the class after some team members have been swapped. </br >
 
 
-
-
   

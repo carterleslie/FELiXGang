@@ -30,7 +30,7 @@ Test Functions
 ```testSwapHappiness()``` This checks the happiness of each member swapped to make sure that their happiness changed. </br >
 ```testNegativeHappy()```Checks to see if a persons happiness, or team's negative. The person's happines is negative when one of their preferences is negative. </br >
 ```testTotalHappiness()``` This tests the total happiness of the class. </br >
-```testTotalHappinessSwap``` Checks the total happines of the class after some team members have been swapped. </br >
+```testTotalHappinessSwap()``` Checks the total happines of the class after some team members have been swapped. </br >
 
 
 

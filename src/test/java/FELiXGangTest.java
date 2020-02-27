@@ -189,12 +189,12 @@ public class FELiXGangTest
 	@Test
 	public void testTotalHappiness()
 	{
-		FELiXGang testTotalHap = new FELiXGang(sampleTeam, 2, 0, 0, 0);
+		FELiXGang testTotalHap = new FELiXGang(sampleTeam, 2,0,0,0,0);
 		int val = 0;
-		int teamSize = testTotalHap.getNumTeams;
+		int teamSize = testTotalHap.getNumTeams();
 		for(int i = 0; i < teamSize; i++)
-			val += testTotalHap.getTeamHappinessIndex(i);	//Gets every team's total happiness, should be 12 for team 1 and 6 for team 2
-		int ans = 18;
+			val += testTotalHap.getTeamHappinessIndex(i);	//Gets every team's total happiness, should be 12 for team 1 and 7 for team 2
+		int ans = 19;
 		assertEquals(ans,val);
 	}
 }

@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
-public class FELiXGang 
+public class HappyTeams 
 {
 	private int classSize; //size of the entire "class" of students
 	private int teamSize; //size of the teams, designated by user
@@ -37,8 +37,8 @@ public class FELiXGang
 	private int[] unhappinessIndex; //holds the array of unhappyness values
 
 
-    //initializer for a FELiXGang
-    public FELiXGang(String allPeople, int tSize, int v, int n, int l, int r)
+    //initializer for a HappyTeams
+    public HappyTeams(String allPeople, int tSize, int v, int n, int l, int r)
     {
     	savePeople = allPeople;
     	classSize = allPeople.split(" ").length;
@@ -71,7 +71,7 @@ public class FELiXGang
     		makeBestTeams(this);
     	}
     }
-    public FELiXGang(FELiXGang copy)
+    public HappyTeams(HappyTeams copy)
     {
     	savePeople = copy.savePeople;
     	classSize = copy.savePeople.split(" ").length;
@@ -192,13 +192,13 @@ public class FELiXGang
     //fills all of [0][0-numTeams], then [1][0-numTeams] such that only the far right of the bottom row is open at the end
     private void fillTeams(String peopleString)
     {
-    	//log(1);
+  
     	for (int c = 0; c < numTeams; c++)
 		{
-			//log(4);
+			
 			for(int r = 0; r < teamSize; r++)
 			{
-				//log(3);
+
 				idMatrix[r][c] = 0;
 			}
 		}
@@ -209,7 +209,7 @@ public class FELiXGang
         int id = 1;
 	    for(int i = 0; i < classSize; i++)
 	    {
-	    	//log(3);
+	 
 	     	String nameAndPrefs[] = people[i].split(",",2);
 
 	     	fillTeamsMatrixIndex(nameAndPrefs[0], r, c);
@@ -227,69 +227,64 @@ public class FELiXGang
 	     	}
 	     	id++;
 	    }
-	    //log(2);	
+	 	
     }
 	//adds name to teamsMatrix[r][c]
     private void fillTeamsMatrixIndex(String name, int r, int c)
     {
-    	//log(1);
+  
     	teamsMatrix[r][c] = name;
-    	//log(2);
+  
     }
     //adds prefs to prefsMatrix at index [r][c]
     private void fillPrefsMatrixIndex(String prefs, int r, int c)
     {
-    	//log(1);
+  
     	String[] values = prefs.split(",");
     	for(int i = 0; i < values.length; i++)
     	{
-    		//log(3);
     		prefsMatrix[r][c][i] = Integer.parseInt(values[i]);
     	}
     	if(values.length < 6)
     	{
-    		//log(4);
     		for(int i = values.length; i < 6; i++)
     		{
-    			//log(3);
     			prefsMatrix[r][c][i] = 0;
     		}
     	}
-    	//log(2);
     }
 	//calculates the happiness for each individual and puts them in the 
 	//individual happiness array
 	private void calcIndividualHappiness()
 	{
-		//log(1);
 		int happiness = 0;
 		for (int c = 0; c < numTeams; c++)
 		{
-			//log(4);;
+			
 			for(int r = 0; r < teamSize; r++)
 			{
-				//log(4);
+				
 				happiness = 0;
 				if(idMatrix[r][c] != 0)
 				{
-					//log(4);
+					
 					for(int r2 = 0; r2 < teamSize; r2++)
 					{
-						//log(4);
+						
 						if(r != r2)
 						{
-							//log(4);
+							
 							for(int i = 0; i < 6; i++)
 							{
-								//log(3);
+				
 								if(idMatrix[r2][c] == prefsMatrix[r][c][i])
 								{
-									//log(3);
+					
 									happiness += happinessIndex[i];
 								}
 								if(idMatrix[r2][c] == -1*prefsMatrix[r][c][i])
 								{
-									//log(3);
+					
 									happiness += unhappinessIndex[i];
 								}
 							}
@@ -299,57 +294,48 @@ public class FELiXGang
 				individualHappinessMatrix[r][c] = happiness;
 			}
 		}
-		//log(2);
 	}
 	//Gauges the happiness of each team.
 	private void calcTeamHappiness()
 	{
-		//log(1);
 		int happiness = 0;
 		int localTeamSize = 0;
 		for(int c = 0; c < numTeams; c++)
 		{
-			//log(4);
+			
 			happiness = 0;
 			for( int r = 0; r < teamSize; r++)
 			{
-				//log(4);
+				
 				if(teamsMatrix[r][c] != "null")
 				{
-					//log(3);
+	
 					happiness += individualHappinessMatrix[r][c];
 				}
 			}
 			teamHappiness[c] = happiness;
 		}
-		//log(2);
 	}
 	//calculates the total happiness of the set
 	private void calcTotalHappiness()
 	{
-		//log(1);
 		totalHappiness = 0;
 		for(int c = 0; c < numTeams; c++)
 		{
-			//log(3);
 			totalHappiness += teamHappiness[c];
 		}
-		//log(2);
 	}
 	//calls all calcXHappiness() functions in order to get the new happiness of the set
 	private void calcAllHappiness()
 	{
-		//log(1);
 		calcIndividualHappiness();
 		calcTeamHappiness();
 		calcTotalHappiness();
-		//log(2);
 	}
 	//swaps the person in teamsMatrix[r1][c1] with the person in teamsMatrix[r2][c2]
 	//also has to swap prefsMatrix and idMatrix at those same positions so they stay parallel
 	public void swapPeople(int r1, int c1, int r2, int c2)
 	{
-		//log(1);
 		String tempName = teamsMatrix[r1][c1];
 		teamsMatrix[r1][c1] = teamsMatrix[r2][c2];
 		teamsMatrix[r2][c2] = tempName;
@@ -360,27 +346,25 @@ public class FELiXGang
 		idMatrix[r1][c1] = idMatrix[r2][c2];
 		idMatrix[r2][c2] = tempID;
 		calcAllHappiness();
-		//log(2);
 	}
-	public void makeBestTeams(FELiXGang orig)
+	public void makeBestTeams(HappyTeams orig)
 	{
-		//log(1);
-		FELiXGang sets[];
-		sets = new FELiXGang[numSets];
-		FELiXGang currSet;
+		HappyTeams sets[];
+		sets = new HappyTeams[numSets];
+		HappyTeams currSet;
 		for(int s = 0; s < numSets; s++)
 		{
-			//log(4);
-			currSet = new FELiXGang(orig);
+			
+			currSet = new HappyTeams(orig);
 			for(int n = 0; n < numSwaps; n++)
 			{
-				//log(4);
+				
 				Random rand = new Random();
-				FELiXGang attempt = new FELiXGang(currSet);
+				HappyTeams attempt = new HappyTeams(currSet);
 				int r1 = 0, r2 = 0, c1 = 0, c2 = 0;
 				while(c1 == c2)
 				{
-					//log(3);
+	
 					r1 = rand.nextInt(teamSize);
 					r2 = rand.nextInt(teamSize);
 					c1 = rand.nextInt(numTeams);
@@ -389,32 +373,29 @@ public class FELiXGang
 				attempt.swapPeople(r1,c1,r2,c2);
 				if(attempt.getTotalHappiness() < currSet.getTotalHappiness())
 				{
-					//log(3);
+	
 					int r = rand.nextInt(100);
 					if(r < badSwapChance)
-						currSet = new FELiXGang(attempt);
+						currSet = new HappyTeams(attempt);
 				}
 				else
 				{
-					//log(3);
-					currSet = new FELiXGang(attempt);
+	
+					currSet = new HappyTeams(attempt);
 				}
 			}
-			sets[s] = new FELiXGang(currSet);
+			sets[s] = new HappyTeams(currSet);
 		}
 		for(int s = 0; s < numSets; s++)
 		{
-			//log(3);
 			System.out.println("----------Team Setup "+ (s+1) +"----------");
 			sets[s].printTeams();
 			System.out.println(" ");
 		}
-		//log(2);
 	}
 	//Prints out teams and their happiness
 	public void printTeams() 
 	{
-		//log(1);
 		for (int c = 0; c < numTeams; c++) 
 		{
 			System.out.print("Team " + (c+1) + ": "); 
@@ -432,7 +413,6 @@ public class FELiXGang
 			System.out.println(". Happiness: " + teamHappiness[c]);
 		}
 		System.out.println("Total Happiness of this set: " + totalHappiness);
-		//log(2);
 	}
 	public static void main( String[] args )
     {
@@ -478,6 +458,6 @@ public class FELiXGang
 		{
 			str = str + scanner.next() + " ";
 		}
-		FELiXGang test = new FELiXGang(str,t,v,n,l,r);
+		HappyTeams test = new HappyTeams(str,t,v,n,l,r);
     }
 }

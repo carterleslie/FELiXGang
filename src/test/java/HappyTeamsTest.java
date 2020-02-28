@@ -23,7 +23,7 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class FELiXGangTest
+public class HappyTeamsTest
 {
     private static String sampleTeam;
     private static String initializerTest1;
@@ -84,18 +84,18 @@ public class FELiXGangTest
     	    }
     	};
 /*
-    FELiXGang sampleVar;
+    HappyTeams sampleVar;
 
     @Before
     public void initialize()
     {
-    	sampleVar = new FELiXGang(4,2);
+    	sampleVar = new HappyTeams(4,2);
     }
 */
     @Test
     public void testInizializer()
     {
-    	FELiXGang test1 = new FELiXGang(initializerTest1, 3, -1, 0, 0, 0);
+    	HappyTeams test1 = new HappyTeams(initializerTest1, 3, -1, 0, 0, 0);
 		assertEquals(3, test1.getTeamSize()); //team size should be 3
 
     	assertEquals(15, test1.getClassSize()); //class size should be 15
@@ -103,14 +103,14 @@ public class FELiXGangTest
     	assertEquals(5, test1.getNumTeams()); //num teams should be 5
 
         
-    	FELiXGang test2 = new FELiXGang(initializerTest2, 3, -1, 0, 0, 0);
+    	HappyTeams test2 = new HappyTeams(initializerTest2, 3, -1, 0, 0, 0);
 		assertEquals(3, test2.getTeamSize()); //team size should be 3
 
 		assertEquals(14, test2.getClassSize()); //class size should be 14
 
 		assertEquals(5, test2.getNumTeams()); //num teams should be 5
 
-    	FELiXGang test3 = new FELiXGang(initializerTest3, 3, -1, 0, 0, 0);
+    	HappyTeams test3 = new HappyTeams(initializerTest3, 3, -1, 0, 0, 0);
 		assertEquals(3, test3.getTeamSize()); //team size should be 3
 
     	assertEquals(13, test3.getClassSize()); //class size should be 13
@@ -121,7 +121,7 @@ public class FELiXGangTest
     @Test 
     public void testFillMatrix()
     {
-		FELiXGang test = new FELiXGang(sampleTeam, 2, -1, 0, 0, 0);
+		HappyTeams test = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 		String ans1 = "Bubba";
         String test1 = test.getTeamsMatrixIndex(0,0);
     	assertEquals(ans1,test1);
@@ -134,7 +134,7 @@ public class FELiXGangTest
 	@Test
 	public void testHappiness()
 	{
-		FELiXGang test1 = new FELiXGang(sampleTeam, 2, -1, 0, 0, 0);
+		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 
         int val = test1.getIndividualHappinessMatrixIndex(0,0); //should be 5
         int ans1 = 5;
@@ -147,7 +147,7 @@ public class FELiXGangTest
 	@Test
 	public void testSwap()
 	{
-		FELiXGang test1 = new FELiXGang(sampleTeam, 2, -1, 0, 0, 0);
+		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 		
 		String ans = "Natasha";
 		String ans2 = "Bubba";
@@ -162,7 +162,7 @@ public class FELiXGangTest
 	@Test
 	public void testSwapHappiness()
 	{
-		FELiXGang test1 = new FELiXGang(sampleTeam, 2, -1, 0, 0, 0);
+		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 		
 		test1.swapPeople(0,0,0,1);	//Swap Bubba and Roland.
 		int val = test1.getIndividualHappinessMatrixIndex(0,0); //Should be 1
@@ -176,7 +176,7 @@ public class FELiXGangTest
     @Test
     public void testNegativeHappy()
     {
-        FELiXGang testNegative = new FELiXGang(negativeHappyTest, 4,-1,0,0,0);
+        HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
 
         int test1 = testNegative.getIndividualHappinessMatrixIndex(3,0); //should be -15
         int ans1 = -15;
@@ -189,7 +189,7 @@ public class FELiXGangTest
 	@Test
 	public void testTotalHappiness()
 	{
-		FELiXGang testTotalHap = new FELiXGang(sampleTeam, 2,0,0,0,0);
+		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,0,0,0,0);
 		int val = 0;
 		int teamSize = testTotalHap.getNumTeams();
 		for(int i = 0; i < teamSize; i++)
@@ -200,7 +200,7 @@ public class FELiXGangTest
 	@Test
 	public void testTotalHappinessSwap()
 	{
-		FELiXGang testTotalHap = new FELiXGang(sampleTeam, 2,0,0,0,0);
+		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,0,0,0,0);
 		int val = 0;
 		int teamSize = testTotalHap.getNumTeams();
 		testTotalHap.swapPeople(0,0,0,1);

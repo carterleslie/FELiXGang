@@ -6,8 +6,8 @@
 
 General terms
 -------------
-**Team:** A team consists of at least two people or more <br />
-**Happy Team(s):** Teams in which the majority of members are happy to be a part. <br />
+**Team:** A team consists of at least two people and at max half the class size <br />
+**Happy Team(s):** Teams in which the majority of members are happy to be a part of. <br />
 **Team Happiness:** The overall score of the total happiness of a team. <br />
 **Individual Happiness:** The happiness rate of each individual in a team. <br />
 **Class size:** Class size refers to the number of students per class, before students are divided into groups. </br>
@@ -17,7 +17,7 @@ Important Functions
 ```calcTeamHappiness()``` This calculates the total happiness of each team. </br >
 ```swapPeople()``` Swaps teams members from one team to another(e.g takes someone from team A to team B, and vice versa . This is meant to increase general team happiness. </br >
 ```printTeams() ``` Prints the names of everyone in each team. </br >
-```calcIndividualHappiness()``` Calculates the happiness for each person, and stores it in the happiness array. </br >
+```calcIndividualHappiness()``` Calculates the happiness for each person, and stores it in the individual happiness array. Can be positive or negative. This is because an individuals happiness can go up or down depending on if they wanted to be on a team with someone. This is shown by putting a positive id in the preferences, meaning they want to be on a team with them, or by putting a negative of the person they don't like's id, showing that they don't want to be on a team with them. </br >
 ```calcTotalHappiness()``` Calculates the total happiness of everyone in a class. </br >
 ```fillTeams()``` The this functions takes a document (string), containing the names of everyone. The function then divides the individuals into teams, the ```teamsMatrix``` array, and puts all their preferences into the ```prefsMatrix``` array. If there are few people, the function will fill the end columns in the matrix with null.</br >
 

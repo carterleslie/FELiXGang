@@ -6,11 +6,11 @@
 
 General terms
 -------------
-**Team** <br /> A team consists of at least two people or more <br />
-**Happy Team(s)** <br /> Teams in which the majority of members are happy to be a part. <br />
-**Team Happiness** <br /> The overall score of the total happiness of a team. <br />
-**Individual Happiness** <br /> The happiness rate of each individual in a team. <br />
-**Class size** </br > Class size refers to the number of students per class, before students are divided into groups. </br>
+**Team:** A team consists of at least two people or more <br />
+**Happy Team(s):** Teams in which the majority of members are happy to be a part. <br />
+**Team Happiness:** The overall score of the total happiness of a team. <br />
+**Individual Happiness:** The happiness rate of each individual in a team. <br />
+**Class size:** Class size refers to the number of students per class, before students are divided into groups. </br>
 
 Important Functions
 ----------

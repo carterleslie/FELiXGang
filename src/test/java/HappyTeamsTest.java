@@ -83,15 +83,7 @@ public class HappyTeamsTest
     		System.out.println("Starting test: " + description.getMethodName());
     	    }
     	};
-/*
-    HappyTeams sampleVar;
 
-    @Before
-    public void initialize()
-    {
-    	sampleVar = new HappyTeams(4,2);
-    }
-*/
     @Test
     public void testInizializer()
     {
@@ -189,7 +181,7 @@ public class HappyTeamsTest
 	@Test
 	public void testTotalHappiness()
 	{
-		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,0,0,0,0);
+		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,-1,0,0,0);
 		int val = 0;
 		int teamSize = testTotalHap.getNumTeams();
 		for(int i = 0; i < teamSize; i++)
@@ -200,7 +192,7 @@ public class HappyTeamsTest
 	@Test
 	public void testTotalHappinessSwap()
 	{
-		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,0,0,0,0);
+		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,-1,0,0,0);
 		int val = 0;
 		int teamSize = testTotalHap.getNumTeams();
 		testTotalHap.swapPeople(0,0,0,1);

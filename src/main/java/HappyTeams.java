@@ -1,10 +1,13 @@
 /******************************************************************************
 *  Author : cal17b Carter Leslie, wsl15a Wade Linder, and fab16b Felix Mbikogbia
 *  Class  : Spring 2020 CS374.01 Dr. Reeves
-*  Date   : 
-*  Task   : 
+*  Date   : 3/4/2020
+*  Task   : Project 1 - Happy Teams
 *
-*  This is a file for creating other files to use quickly in the future.
+*  This program creates teams of whatever number the user specifies and then
+*  optimizes those teams so that they are the most happy. It then prints
+*  however many "Happy Teams" the user specifies. All team members are read
+*  from a file in csv format while output is printed by standard output.
 *
 ******************************************************************************/
 
@@ -42,12 +45,17 @@ public class HappyTeams
     {
     	savePeople = allPeople;
     	classSize = allPeople.split(" ").length;
-    	teamSize = tSize;
+    	if(tSize >= 2 && tSize <= classSize/2)
+    		teamSize = tSize;
+    	else if(tSize < 2)
+    		teamSize = 2;
+    	else
+    		teamSize = classSize/2;
     	verbose = v;
     	numSwaps = n;
     	numSets = l;
     	badSwapChance = r;
-
+    	log(1);
     	if(classSize % teamSize == 0)
     		numTeams = classSize / teamSize;
     	else
@@ -65,6 +73,7 @@ public class HappyTeams
     	calcAllHappiness();
     	if(verbose >= 0)
     	{
+    		log(3);
     		System.out.println("----------Initial Team Setup----------");
     		printTeams();
     		System.out.println(" ");
@@ -173,26 +182,28 @@ public class HappyTeams
     {
     	return teamHappiness[index];
     }
-    /*private void //log(int vLevel)
+    private void log(int vLevel)
     {
     	StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-    	String caller = stackTrace[2].getMethodName();
+    	String method = stackTrace[0].getMethodName();
+    	String caller = stackTrace[1].getMethodName();
+    	String callerOfCaller = stackTrace[3].getMethodName();
     	if(vLevel <= verbose && vLevel == 4) //verbose of 4 output
-    		System.out.println("Made it into a deeper level of method: "+caller);
+    		System.out.println("Printed teams, called by method: "+caller);
     	if(vLevel <= verbose && vLevel == 3) //verbose of 3 output
-    		System.out.println("Reached deepest level of a nested part of method: "+caller);
+    		System.out.println("About to print teams in method: "+method);
     	if(vLevel <= verbose && vLevel == 2) //verbose of 2 output
-    		System.out.println("Completed method: "+caller);
+    		System.out.println("Tried to fill teams from method: "+caller);
     	if(vLevel <= verbose && vLevel == 1) //verbose of 1 output
-    		System.out.println("Called method: "+caller);
-    }*/
+    		System.out.println("Creating initial HappyTeam with passed information.");
+    }
     //fills up the teamsMatrix and prefsMatrix with whatever file you pass it
     //fills them in a way that only leaves the end index of a column open as null when there aren't
     //enough people in the class.
     //fills all of [0][0-numTeams], then [1][0-numTeams] such that only the far right of the bottom row is open at the end
     private void fillTeams(String peopleString)
     {
-  
+  		log(2);
     	for (int c = 0; c < numTeams; c++)
 		{
 			
@@ -227,19 +238,15 @@ public class HappyTeams
 	     	}
 	     	id++;
 	    }
-	 	
     }
 	//adds name to teamsMatrix[r][c]
     private void fillTeamsMatrixIndex(String name, int r, int c)
     {
-  
     	teamsMatrix[r][c] = name;
-  
     }
     //adds prefs to prefsMatrix at index [r][c]
     private void fillPrefsMatrixIndex(String prefs, int r, int c)
     {
-  
     	String[] values = prefs.split(",");
     	for(int i = 0; i < values.length; i++)
     	{
@@ -260,31 +267,23 @@ public class HappyTeams
 		int happiness = 0;
 		for (int c = 0; c < numTeams; c++)
 		{
-			
 			for(int r = 0; r < teamSize; r++)
 			{
-				
 				happiness = 0;
 				if(idMatrix[r][c] != 0)
 				{
-					
 					for(int r2 = 0; r2 < teamSize; r2++)
 					{
-						
 						if(r != r2)
 						{
-							
 							for(int i = 0; i < 6; i++)
 							{
-				
 								if(idMatrix[r2][c] == prefsMatrix[r][c][i])
 								{
-					
 									happiness += happinessIndex[i];
 								}
 								if(idMatrix[r2][c] == -1*prefsMatrix[r][c][i])
 								{
-					
 									happiness += unhappinessIndex[i];
 								}
 							}
@@ -302,14 +301,11 @@ public class HappyTeams
 		int localTeamSize = 0;
 		for(int c = 0; c < numTeams; c++)
 		{
-			
 			happiness = 0;
 			for( int r = 0; r < teamSize; r++)
 			{
-				
 				if(teamsMatrix[r][c] != "null")
 				{
-	
 					happiness += individualHappinessMatrix[r][c];
 				}
 			}
@@ -354,17 +350,14 @@ public class HappyTeams
 		HappyTeams currSet;
 		for(int s = 0; s < numSets; s++)
 		{
-			
 			currSet = new HappyTeams(orig);
 			for(int n = 0; n < numSwaps; n++)
 			{
-				
 				Random rand = new Random();
 				HappyTeams attempt = new HappyTeams(currSet);
 				int r1 = 0, r2 = 0, c1 = 0, c2 = 0;
 				while(c1 == c2)
 				{
-	
 					r1 = rand.nextInt(teamSize);
 					r2 = rand.nextInt(teamSize);
 					c1 = rand.nextInt(numTeams);
@@ -373,14 +366,12 @@ public class HappyTeams
 				attempt.swapPeople(r1,c1,r2,c2);
 				if(attempt.getTotalHappiness() < currSet.getTotalHappiness())
 				{
-	
 					int r = rand.nextInt(100);
 					if(r < badSwapChance)
 						currSet = new HappyTeams(attempt);
 				}
 				else
 				{
-	
 					currSet = new HappyTeams(attempt);
 				}
 			}
@@ -388,6 +379,7 @@ public class HappyTeams
 		}
 		for(int s = 0; s < numSets; s++)
 		{
+			log(3);
 			System.out.println("----------Team Setup "+ (s+1) +"----------");
 			sets[s].printTeams();
 			System.out.println(" ");
@@ -413,10 +405,11 @@ public class HappyTeams
 			System.out.println(". Happiness: " + teamHappiness[c]);
 		}
 		System.out.println("Total Happiness of this set: " + totalHappiness);
+		log(4);
 	}
 	public static void main( String[] args )
     {
-    	int t = 2;
+    	int t = 1;
         int v = 0;
         int n = 10000;
         int l = 20;
@@ -458,6 +451,12 @@ public class HappyTeams
 		{
 			str = str + scanner.next() + " ";
 		}
+		if(v >= 4)
+    		v = 4;
+    	if(n < 0)
+    		n = 10000;
+    	if(l < 0)
+    		l = 20;
 		HappyTeams test = new HappyTeams(str,t,v,n,l,r);
     }
 }

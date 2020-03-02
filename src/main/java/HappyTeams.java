@@ -409,7 +409,7 @@ public class HappyTeams
 	}
 	public static void main( String[] args )
     {
-    	int t = 1;
+    	int t = 2;
         int v = 0;
         int n = 10000;
         int l = 20;
@@ -421,27 +421,42 @@ public class HappyTeams
             	if(args[i].equals("-t"))
             	{
             		i++;
-            		t = Integer.parseInt(args[i]);
+            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-"))
+            			t = Integer.parseInt(args[i]);
+            		else
+            			i--;
             	}
             	if(args[i].equals("-v"))
             	{
             		i++;
-            		v = Integer.parseInt(args[i]);
+            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            			v = Integer.parseInt(args[i]);
+            		else
+            			i--;
             	}
             	if(args[i].equals("-n"))
             	{
             		i++;
-            		n = Integer.parseInt(args[i]);
+            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            			n = Integer.parseInt(args[i]);
+            		else
+            			i--;
             	}
             	if(args[i].equals("-l"))
             	{
             		i++;
-            		l = Integer.parseInt(args[i]);
+            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            			l = Integer.parseInt(args[i]);
+            		else
+            			i--;
             	}
             	if(args[i].equals("-r"))
             	{
             		i++;
-            		r = Integer.parseInt(args[i]);
+            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            			r = Integer.parseInt(args[i]);
+            		else
+            			i--;
             	}
             }
         } 

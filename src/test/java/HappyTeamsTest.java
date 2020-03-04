@@ -218,20 +218,19 @@ public class HappyTeamsTest
 		testWrongSwap.swapPeople(0,0,2,2); //breaks because a 2x2 matrix only has r=1 and c=1 as it's max
 	}
 	
+    @Test(expected= IndexOutOfBoundsException.class)
+    public void testBothWrongSwap() //Swaps the names of people, but one is outside of the scope
+    {
+        HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+        test1.swapPeople(2,1,1,2);
+    }
+
 	@Test(expected= IndexOutOfBoundsException.class)
 	public void testNegHappyWrong()
 	{
 		HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
 
         int test1 = testNegative.getIndividualHappinessMatrixIndex(8,8); //breaks because it's far outside the matrix
-	}
-	
-	@Test(expected= IndexOutOfBoundsException.class)
-	public void testSwapNamesWrong()	//Swaps the names of people, but one is outside of the scope
-	{
-		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
-		
-		test1.swapPeople(0,0,2,2);
 	}
 	
 	@Test(expected= IndexOutOfBoundsException.class)
@@ -250,23 +249,21 @@ public class HappyTeamsTest
         assertEquals(ans1,test1);
 	}
 	@Test
-    public void testgetIDMatrixIndex()
+    public void testGetIDMatrixIndex()
     {
-        HappyTeams testgetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+        HappyTeams testGetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 
-        int test1 = testgetIDIndex.getIDMatrixIndex(0,1); //should be 2
+        int test1 = testGetIDIndex.getIDMatrixIndex(0,1); //should be 2
         int ans1 = 2;
         assertEquals(ans1,test1);
 	}
 
 	@Test(expected= IndexOutOfBoundsException.class)
-	public void testgetIDMatrixIndexWrong()
+	public void testGetIDMatrixIndexWrong()
 	{
-		HappyTeams testgetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+		HappyTeams testGetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 
-        int test1 = testgetIDIndex.getIDMatrixIndex(0,8); //This should fail because there is no ID at the give index.
-        int ans1 = 2; 
-        assertEquals(ans1,test1);
+        int test1 = testGetIDIndex.getIDMatrixIndex(0,8); //This should fail because there is no ID at the give index.
 	}
 
 }

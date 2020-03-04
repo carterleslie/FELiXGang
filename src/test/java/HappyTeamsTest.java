@@ -218,45 +218,26 @@ public class HappyTeamsTest
 		testWrongSwap.swapPeople(0,0,2,2); //breaks because a 2x2 matrix only has r=1 and c=1 as it's max
 	}
 	
-	/*@Test
+	@Test(expected= IndexOutOfBoundsException.class)
 	public void testNegHappyWrong()
 	{
 		HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
 
-        int test1 = testNegative.getIndividualHappinessMatrixIndex(3,0); //should be -15
-        int ans1 = 15;
-        assertEquals(ans1,test1);
-
-        int test2 = testNegative.getTeamHappinessIndex(0); //should be -46
-        int ans2 = 46;
-        assertEquals(ans2,test2);	//Testing to see that it actually sees negatives.
+        int test1 = testNegative.getIndividualHappinessMatrixIndex(8,8); //breaks because it's far outside the matrix
 	}
 	
 	@Test(expected= IndexOutOfBoundsException.class)
-	public void testSwapNamesWrong()	//Swaps the names and also checks that the names aren't also in their old locations, should fail.
+	public void testSwapNamesWrong()	//Swaps the names of people, but one is outside of the scope
 	{
 		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
 		
-		String ans = "Bubba";
-		String ans2 = "Natasha";
-		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));	//Making sure it's in the right place first...
-		assertEquals(ans2,test1.getTeamsMatrixIndex(0,0));
-		
-		test1.swapPeople(0,0,1,0);
-		assertEquals(ans,test1.getTeamsMatrixIndex(0,0)); //And now testing that it's swapped.
-		assertEquals(ans2,test1.getTeamsMatrixIndex(1,0));
+		test1.swapPeople(0,0,2,2);
 	}
 	
-	@Test
-	public void testFillMatrixWrong()	//Similar test to above, seeing that Bubba and Natasha are placed in the right positions.
+	@Test(expected= IndexOutOfBoundsException.class)
+	public void testFillMatrixWrong()
 	{
 		HappyTeams test = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
-		String ans1 = "Natasha";
-        String test1 = test.getTeamsMatrixIndex(0,0);
-    	assertEquals(ans1,test1);
-
-    	String ans2 = "Bubba";
-        String test2 = test.getTeamsMatrixIndex(1,0);
-		assertEquals(ans2,test2);
-	}*/
+        test.getTeamsMatrixIndex(3,3);	//Breaks here, out of scope of the matrix.
+	}
 }

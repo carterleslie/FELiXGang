@@ -30,6 +30,7 @@ public class HappyTeamsTest
     private static String initializerTest2;
     private static String initializerTest3;
     private static String negativeHappyTest;
+    private static String bestTest;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception 
@@ -74,6 +75,14 @@ public class HappyTeamsTest
             negativeHappyTest = negativeHappyTest + sc.next() + " ";
         }
         sc.close();
+        file = new File("bestTest.txt");
+        sc = new Scanner(file);
+        bestTest = "";
+        while(sc.hasNext())
+        {
+            bestTest = bestTest + sc.next() + " ";
+        }
+        sc.close();
     }
 
 	@Rule
@@ -89,24 +98,17 @@ public class HappyTeamsTest
     {
     	HappyTeams test1 = new HappyTeams(initializerTest1, 3, -1, 0, 0, 0);
 		assertEquals(3, test1.getTeamSize()); //team size should be 3
-
     	assertEquals(15, test1.getClassSize()); //class size should be 15
-
     	assertEquals(5, test1.getNumTeams()); //num teams should be 5
 
-        
     	HappyTeams test2 = new HappyTeams(initializerTest2, 3, -1, 0, 0, 0);
 		assertEquals(3, test2.getTeamSize()); //team size should be 3
-
 		assertEquals(14, test2.getClassSize()); //class size should be 14
-
 		assertEquals(5, test2.getNumTeams()); //num teams should be 5
 
     	HappyTeams test3 = new HappyTeams(initializerTest3, 3, -1, 0, 0, 0);
 		assertEquals(3, test3.getTeamSize()); //team size should be 3
-
     	assertEquals(13, test3.getClassSize()); //class size should be 13
-
 		assertEquals(5, test3.getNumTeams()); //num teams should be 5
     }
 
@@ -165,6 +167,7 @@ public class HappyTeamsTest
 		int val2 = test1.getTeamHappinessIndex(0); //Should be 1
 		assertEquals(ans2,val2);
 	}
+
     @Test
     public void testNegativeHappy()
     {
@@ -202,15 +205,15 @@ public class HappyTeamsTest
 		assertEquals(ans,val);
 	}
 	
-	@Test
-	public void testBest()
-	{
-		HappyTeams testBest = new HappyTeams(sampleTeam, 2,-1,0,0,0);
-		int val = testBest.getTotalHappiness();
-		int ans = 19;
-		assertEquals(ans,val);
-	}
-	
+    @Test
+    public void testBest()
+    {
+        HappyTeams best = new HappyTeams(bestTest,3,0,1000,20,0);
+        //making sure the total happiness is highter than 0, meaning more people are happy than are not happy
+        for(int i = 0; i < 20; i++)
+            assertTrue( best.getSetsIndex(i).getTotalHappiness() > 0); 
+    }
+
 	@Test(expected= IndexOutOfBoundsException.class)
 	public void testWrongSwap()
 	{
@@ -226,11 +229,11 @@ public class HappyTeamsTest
     }
 
 	@Test(expected= IndexOutOfBoundsException.class)
-	public void testNegHappyWrong()
+	public void testHappyWrong()
 	{
-		HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
+		HappyTeams testHappy = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
 
-        int test1 = testNegative.getIndividualHappinessMatrixIndex(8,8); //breaks because it's far outside the matrix
+        int test1 = testHappy.getIndividualHappinessMatrixIndex(8,8); //breaks because it's far outside the matrix
 	}
 	
 	@Test(expected= IndexOutOfBoundsException.class)
@@ -265,5 +268,4 @@ public class HappyTeamsTest
 
         int test1 = testGetIDIndex.getIDMatrixIndex(0,8); //This should fail because there is no ID at the give index.
 	}
-
 }

@@ -28,7 +28,7 @@ public class HappyTeams
 	private int numSets; //number of best sets to create/attempt
 	private int badSwapChance; //the chances of keeping a bad swap
 	private int totalHappiness; //total happiness of the set
-	private String savePeople; //
+	private String savePeople; //saves the string of people from the beginning for later use
 	//the next five matricies are parallel but individualHappinessMatrix and teamHappiness are calculated upon swaps 
 	//while the other three must be manually changed when swapping to preserve parallelness
 	private String[][] teamsMatrix; //holds the names of all the people, each r value represents a different team
@@ -38,6 +38,7 @@ public class HappyTeams
 	private int[] teamHappiness; //holds total team happiness of team teamsMatrix[r][0-teamSize] in it's own [r] position
 	private int[] happinessIndex; //holds the array of happiness values
 	private int[] unhappinessIndex; //holds the array of unhappyness values
+	private HappyTeams[] sets;
 
 
     //initializer for a HappyTeams
@@ -184,6 +185,10 @@ public class HappyTeams
     {
     	return teamHappiness[index];
     }
+    public HappyTeams getSetsIndex(int index)
+    {
+        return sets[index];
+    }
     //handles the verbosity level and deubugging output of the code
     private void log(int vLevel)
     {
@@ -209,10 +214,8 @@ public class HappyTeams
   		log(2);
     	for (int c = 0; c < numTeams; c++)
 		{
-			
 			for(int r = 0; r < teamSize; r++)
 			{
-
 				idMatrix[r][c] = 0;
 			}
 		}
@@ -220,26 +223,31 @@ public class HappyTeams
     	String people[] = peopleString.split(" ");
       
         int r = 0, c = 0;
-        int id = 1;
-	    for(int i = 0; i < classSize; i++)
+	    for(int i = 0; i < teamSize*numTeams; i++)
 	    {
-	 
-	     	String nameAndPrefs[] = people[i].split(",",2);
+            if(i < classSize)
+            {
+                String nameAndPrefs[] = people[i].split(",",2);
 
-	     	fillTeamsMatrixIndex(nameAndPrefs[0], r, c);
-	     	if(people[i].indexOf(',') >= 0)
-	     		fillPrefsMatrixIndex(nameAndPrefs[1], r, c);
-	     	else
-	     		fillPrefsMatrixIndex("0,0,0,0,0,0", r, c);
-	     	idMatrix[r][c] = i+1;
-	     	if(c < numTeams-1)
-	     		c++;
-	     	else
-	     	{
-	     		r++;
-	     		c = 0;
-	     	}
-	     	id++;
+                fillTeamsMatrixIndex(nameAndPrefs[0], r, c);
+                if(people[i].indexOf(',') >= 0)
+	     		    fillPrefsMatrixIndex(nameAndPrefs[1], r, c);
+                else
+	     		    fillPrefsMatrixIndex("0,0,0,0,0,0", r, c);
+                idMatrix[r][c] = i+1;
+            }
+            else
+            {
+                fillTeamsMatrixIndex("Placeholder", r, c);
+                fillPrefsMatrixIndex("0,0,0,0,0,0", r, c);
+            }
+            if(c < numTeams-1)
+                c++;
+            else
+            {
+                r++;
+                c = 0;
+            }
 	    }
     }
 	//adds name to teamsMatrix[r][c]
@@ -302,12 +310,14 @@ public class HappyTeams
 	{
 		int happiness = 0;
 		int localTeamSize = 0;
+        int numNulls = 0;
 		for(int c = 0; c < numTeams; c++)
 		{
 			happiness = 0;
+            numNulls = 0;
 			for( int r = 0; r < teamSize; r++)
 			{
-				if(teamsMatrix[r][c] != "null")
+				if(!teamsMatrix[r][c].equals("Placeholder"))
 				{
 					happiness += individualHappinessMatrix[r][c];
 				}
@@ -333,8 +343,20 @@ public class HappyTeams
 	}
 	//swaps the person in teamsMatrix[r1][c1] with the person in teamsMatrix[r2][c2]
 	//also has to swap prefsMatrix and idMatrix at those same positions so they stay parallel
-	public void swapPeople(int r1, int c1, int r2, int c2)
+	public int swapPeople(int r1, int c1, int r2, int c2)
 	{
+        if(teamsMatrix[r1][c1].equals("Placeholder"))
+        {
+            for(int r = 0; r < teamSize; r++)
+                if(teamsMatrix[r][c2].equals("Placeholder"))
+                    return 0;
+        }
+        if(teamsMatrix[r2][c2].equals("Placeholder"))
+        {
+            for(int r = 0; r < teamSize; r++)
+                if(teamsMatrix[r][c1].equals("Placeholder"))
+                    return 0;
+        }
 		String tempName = teamsMatrix[r1][c1];
 		teamsMatrix[r1][c1] = teamsMatrix[r2][c2];
 		teamsMatrix[r2][c2] = tempName;
@@ -345,12 +367,12 @@ public class HappyTeams
 		idMatrix[r1][c1] = idMatrix[r2][c2];
 		idMatrix[r2][c2] = tempID;
 		calcAllHappiness();
+        return 0;
 	}
 	//the function responsible with making the best teams relative to the original team setup(orig)
 	//that is passed to it. After making numSets best teams, it outputs all of them
 	public void makeBestTeams(HappyTeams orig)
 	{
-		HappyTeams sets[];
 		sets = new HappyTeams[numSets];
 		HappyTeams currSet;
 		for(int s = 0; s < numSets; s++)

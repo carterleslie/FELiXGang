@@ -80,6 +80,8 @@ public class HappyTeams
     		makeBestTeams(this);
     	}
     }
+    //a copy constructor for a HappyTeams, used only in makeBestTeams() to copy whatever
+    //HappyTeams object you pass it
     public HappyTeams(HappyTeams copy)
     {
     	savePeople = copy.savePeople;
@@ -182,6 +184,7 @@ public class HappyTeams
     {
     	return teamHappiness[index];
     }
+    //handles the verbosity level and deubugging output of the code
     private void log(int vLevel)
     {
     	StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
@@ -343,6 +346,8 @@ public class HappyTeams
 		idMatrix[r2][c2] = tempID;
 		calcAllHappiness();
 	}
+	//the function responsible with making the best teams relative to the original team setup(orig)
+	//that is passed to it. After making numSets best teams, it outputs all of them
 	public void makeBestTeams(HappyTeams orig)
 	{
 		HappyTeams sets[];
@@ -414,14 +419,14 @@ public class HappyTeams
         int n = 10000;
         int l = 20;
         int r = 2;
-    	if (args.length > 0) 
-        { 
+    	if (args.length > 0)//parses in all the commandline args and handles setting the 
+    	{                   //numbers they correspond to accordingly 
             for (int i = 0; i < args.length; i++) 
             {
             	if(args[i].equals("-t"))
             	{
             		i++;
-            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-"))
+            		if(i < args.length && !args[i].equals("-t") && !args[i].equals("-v") && !args[i].equals("-n") && !args[i].equals("-l") && !args[i].equals("-"))
             			t = Integer.parseInt(args[i]);
             		else
             			i--;
@@ -429,15 +434,15 @@ public class HappyTeams
             	if(args[i].equals("-v"))
             	{
             		i++;
-            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            		if(i < args.length && !args[i].equals("-t") && !args[i].equals("-v") && !args[i].equals("-n") && !args[i].equals("-l") && !args[i].equals("-"))
             			v = Integer.parseInt(args[i]);
             		else
             			i--;
             	}
             	if(args[i].equals("-n"))
-            	{
+            	{ 
             		i++;
-            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            		if(i < args.length && !args[i].equals("-t") && !args[i].equals("-v") && !args[i].equals("-n") && !args[i].equals("-l") && !args[i].equals("-"))
             			n = Integer.parseInt(args[i]);
             		else
             			i--;
@@ -445,7 +450,7 @@ public class HappyTeams
             	if(args[i].equals("-l"))
             	{
             		i++;
-            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            		if(i < args.length && !args[i].equals("-t") && !args[i].equals("-v") && !args[i].equals("-n") && !args[i].equals("-l") && !args[i].equals("-"))
             			l = Integer.parseInt(args[i]);
             		else
             			i--;
@@ -453,7 +458,7 @@ public class HappyTeams
             	if(args[i].equals("-r"))
             	{
             		i++;
-            		if(i < args.length && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
+            		if(i < args.length+1 && args[i].equals("-t") && args[i].equals("-v") && args[i].equals("-n") && args[i].equals("-l") && args[i].equals("-r"))
             			r = Integer.parseInt(args[i]);
             		else
             			i--;

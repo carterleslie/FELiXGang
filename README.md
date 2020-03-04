@@ -43,6 +43,7 @@ Test Functions
 ```testNegativeHappy()```Checks to see if a persons or team's happiness is negative.  </br >
 ```testTotalHappiness()``` This tests the total happiness of the class. </br >
 ```testTotalHappinessSwap()``` Checks the total happines of the class after some team members have been swapped. </br >
+```testBest()``` Checks to see if all of the sets our program created are better than 0. </br >
 ```testWrongSwap()``` Tests to see if our code breaks when you try to swap someone outside of the array. </br >
 ```testBothWrongSwap()``` Tests to see if swapping two people outside the array will cause an error. </br >
 ```testHappyWrong()``` Tests to see if trying to access a happiness outside of the class size causes an error. </br >

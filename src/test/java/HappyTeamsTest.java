@@ -201,4 +201,68 @@ public class HappyTeamsTest
 		int ans = 2;
 		assertEquals(ans,val);
 	}
+	
+	@Test
+	public void testBest()
+	{
+		HappyTeams testBest = new HappyTeams(sampleTeam, 2,-1,0,0,0);
+		int val = testBest.getTotalHappiness();
+		int ans = 19;
+		assertEquals(ans,val);
+	}
+	
+	@Test
+	public void testWrongSwap()
+	{
+		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,-1,0,0,0);
+		int val = 0;
+		int teamSize = testTotalHap.getNumTeams();
+		testTotalHap.swapPeople(0,0,0,1);
+		for(int i = 0; i < teamSize; i++)
+			val += testTotalHap.getTeamHappinessIndex(i);	//Gets every team's total happiness, should be 1 for team 1 and 1 for team 2. We are making sure it's not that.
+		int ans = 3;
+		assertEquals(ans,val);
+	}
+	
+	@Test
+	public void testNegHappyWrong()
+	{
+		HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
+
+        int test1 = testNegative.getIndividualHappinessMatrixIndex(3,0); //should be -15
+        int ans1 = 15;
+        assertEquals(ans1,test1);
+
+        int test2 = testNegative.getTeamHappinessIndex(0); //should be -46
+        int ans2 = 46;
+        assertEquals(ans2,test2);	//Testing to see that it actually sees negatives.
+	}
+	
+	@Test
+	public void testSwapNamesWrong()	//Swaps the names and also checks that the names aren't also in their old locations, should fail.
+	{
+		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+		
+		String ans = "Bubba";
+		String ans2 = "Natasha";
+		assertEquals(ans,test1.getTeamsMatrixIndex(1,0));	//Making sure it's in the right place first...
+		assertEquals(ans2,test1.getTeamsMatrixIndex(0,0));
+		
+		test1.swapPeople(0,0,1,0);
+		assertEquals(ans,test1.getTeamsMatrixIndex(0,0)); //And now testing that it's swapped.
+		assertEquals(ans2,test1.getTeamsMatrixIndex(1,0));
+	}
+	
+	@Test
+	public void testFillMatrixWrong()	//Similar test to above, seeing that Bubba and Natasha are placed in the right positions.
+	{
+		HappyTeams test = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+		String ans1 = "Natasha";
+        String test1 = test.getTeamsMatrixIndex(0,0);
+    	assertEquals(ans1,test1);
+
+    	String ans2 = "Bubba";
+        String test2 = test.getTeamsMatrixIndex(1,0);
+		assertEquals(ans2,test2);
+	}
 }

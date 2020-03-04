@@ -211,20 +211,14 @@ public class HappyTeamsTest
 		assertEquals(ans,val);
 	}
 	
-	@Test
+	@Test(expected= IndexOutOfBoundsException.class)
 	public void testWrongSwap()
 	{
-		HappyTeams testTotalHap = new HappyTeams(sampleTeam, 2,-1,0,0,0);
-		int val = 0;
-		int teamSize = testTotalHap.getNumTeams();
-		testTotalHap.swapPeople(0,0,0,1);
-		for(int i = 0; i < teamSize; i++)
-			val += testTotalHap.getTeamHappinessIndex(i);	//Gets every team's total happiness, should be 1 for team 1 and 1 for team 2. We are making sure it's not that.
-		int ans = 3;
-		assertEquals(ans,val);
+		HappyTeams testWrongSwap = new HappyTeams(sampleTeam, 2,-1,0,0,0);
+		testWrongSwap.swapPeople(0,0,2,2); //breaks because a 2x2 matrix only has r=1 and c=1 as it's max
 	}
 	
-	@Test
+	/*@Test
 	public void testNegHappyWrong()
 	{
 		HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
@@ -238,7 +232,7 @@ public class HappyTeamsTest
         assertEquals(ans2,test2);	//Testing to see that it actually sees negatives.
 	}
 	
-	@Test
+	@Test(expected= IndexOutOfBoundsException.class)
 	public void testSwapNamesWrong()	//Swaps the names and also checks that the names aren't also in their old locations, should fail.
 	{
 		HappyTeams test1 = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
@@ -264,5 +258,5 @@ public class HappyTeamsTest
     	String ans2 = "Bubba";
         String test2 = test.getTeamsMatrixIndex(1,0);
 		assertEquals(ans2,test2);
-	}
+	}*/
 }

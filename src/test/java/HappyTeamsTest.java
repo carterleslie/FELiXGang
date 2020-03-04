@@ -240,4 +240,33 @@ public class HappyTeamsTest
 		HappyTeams test = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
         test.getTeamsMatrixIndex(3,3);	//Breaks here, out of scope of the matrix.
 	}
+	@Test
+    public void testPrefMatrixIndex()
+    {
+        HappyTeams testNegative = new HappyTeams(negativeHappyTest, 4,-1,0,0,0);
+
+        int test1 = testNegative.getPrefsMatrixIndex(0,0,0); //should be 2
+        int ans1 = 2;
+        assertEquals(ans1,test1);
+	}
+	@Test
+    public void testgetIDMatrixIndex()
+    {
+        HappyTeams testgetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+
+        int test1 = testgetIDIndex.getIDMatrixIndex(0,1); //should be 2
+        int ans1 = 2;
+        assertEquals(ans1,test1);
+	}
+
+	@Test(expected= IndexOutOfBoundsException.class)
+	public void testgetIDMatrixIndexWrong()
+	{
+		HappyTeams testgetIDIndex = new HappyTeams(sampleTeam, 2, -1, 0, 0, 0);
+
+        int test1 = testgetIDIndex.getIDMatrixIndex(0,8); //This should fail because there is no ID at the give index.
+        int ans1 = 2; 
+        assertEquals(ans1,test1);
+	}
+
 }

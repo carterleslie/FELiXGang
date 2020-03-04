@@ -72,4 +72,6 @@ Week 3
 ----------
 * Created a best teams function that swaps people until a truly optimal solution is made
 * Allows user-inputted files
+* Allows user-inputted command line arguements
+* Wrote twice as many more test cases
 * Bugfixing

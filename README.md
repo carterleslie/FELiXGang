@@ -1,14 +1,6 @@
 # FELiXGang
  Happy Teams Project for Carter Leslie, Wade Linder, and Felix Mbikogbia for Dr. Reeves' SE20 CS374.01 class at Abilene Christian University
 
-Pitch
----------
-For teachers who need to organize students into teams, the FELiXGang sorting system is a sorting program that sorts students based on their preferences, both positive and negative unlike Canvas' random team creation program.
-
-Our Solution
----------
-What makes the FELiXGang sorting system different is that students will be able to list their preferences for other students in a descending list, with the most preferred at the top and scaling down. Along with this, they can also choose a select list of students they'd prefer to not work with by adding a minus sign ```-``` before the student's ID number. Afterwards, the students are sorted into a matrix where they are swapped with other students until an optimal happiness is created using the list of all students available.
-
 #Glossary
 ==========
 
@@ -91,5 +83,45 @@ Master Story
 * finishing touches (anything that might come up during the project)
 * write the README.md file
 
-Inception Deck
----------------
+#Inception Deck
+================
+
+Why are we here? 
+------------
+The purpose of the project is the design a system that can randomly assign people to teams based on their selected preferences. Our customers could include high school teachers, professors, or any other person that might want to find an easier way of assigning people to teams.
+
+Pitch
+---------
+For teachers who need to organize students into teams, the FELiXGang sorting system is a sorting program that sorts students based on their preferences, both positive and negative unlike Canvas' random team creation program.
+
+Product Box
+-------
+If you are a teacher, a professor, or someone that works with teams often, you know team selection can be a hard task. That is why FELiXGang was made to solve the problem. The FELiXGang program uses sophisticated algorithms that easily assigns people in to teams, and even calculates individual and group happiness in the team. If no one is happy with the team, FELiXGang also has a swap algorithm that keeps swapping people in different teams until everyone is happy with their team. Creating teams has never been easier. Get FELiXGang team maker today!
+
+The Not List
+------
+For this program, there isn’t going to be any user interface. It is a program to run from the terminal only. Also, this program won’t need internet connection to run, so there is no need to worry about that.
+
+Meet Your Neigbors
+---
+This project only had three people working on it. There wasn’t any third party or anyone else less directly involved with the project that we could meet with.
+
+Our Solution
+---------
+What makes the FELiXGang sorting system different is that students will be able to list their preferences for other students in a descending list, with the most preferred at the top and scaling down. Along with this, they can also choose a select list of students they'd prefer to not work with by adding a minus sign ```-``` before the student's ID number. Afterwards, the students are sorted into a matrix where they are swapped with other students until an optimal happiness is created using the list of all students available.
+
+What keeps us up at night:
+----
+This project didn’t have many risks. The major problem was the time for all team members to meet, but though this was the case, team members still managed to meet at least once/twice a week to work on the project.
+
+Size it up: 
+---
+The project is expected to be for three weeks. The first week will consist of brainstorming and building the project’s basic framework. The second week will consist of add more functionalities, scaling the project, and adding test cases. The third week will consist of creating more functions for swapping team members, adding more test cases, and finishing the debug process.
+
+Be clear on what is going to give
+---
+For this project, time is the most important thing, followed by quality, then scope. There is not budget needed for the project. The goal is to spend at least 3 hours a week working on the project, and to deliver working software by the end of three weeks.
+
+What is it going to take:
+---
+It is going to take team collaboration and dedication to finish the project, as well as good team communication.

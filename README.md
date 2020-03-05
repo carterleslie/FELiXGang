@@ -1,6 +1,14 @@
 # FELiXGang
  Happy Teams Project for Carter Leslie, Wade Linder, and Felix Mbikogbia for Dr. Reeves' SE20 CS374.01 class at Abilene Christian University
 
++Pitch
+---------
+For teachers who need to organize students into teams, the FELiXGang sorting system is a sorting program that sorts students based on their preferences, both positive and negative unlike Canvas' random team creation program.
+
+Our Solution
+---------
+What makes the FELiXGang sorting system different is that students will be able to list their preferences for other students in a descending list, with the most preferred at the top and scaling down. Along with this, they can also choose a select list of students they'd prefer to not work with by adding a minus sign ```-``` before the student's ID number. Afterwards, the students are sorted into a matrix where they are swapped with other students until an optimal happiness is created using the list of all students available.
+
 #Glossary
 ==========
 
@@ -71,17 +79,17 @@ Week 3
 Master Story
 --------------
 * Brainstorm on project structure and what it will take.
-* write the initializers
-* write a function that feeds data from file into the program (reading student names and preferences into the code)
+* Write the initializers
+* Write a function that feeds data from file into the program (reading student names and preferences into the code)
 * Add matrices that store student names and preferences separately.
-* split students into teams
+* Split students into teams
 * Write a basic happiness function
-* add more to happiness function, including the calculations of happiness, both individual and group.
+* Add more to happiness function, including the calculations of happiness, both individual and group.
 * Add swap functions
-* write test functions
-* debug and add more test functions
-* finishing touches (anything that might come up during the project)
-* write the README.md file
+* Write test functions
+* Debug and add more test functions
+* Finishing touches (anything that might come up during the project)
+* Write the README.md file
 
 #Inception Deck
 ================

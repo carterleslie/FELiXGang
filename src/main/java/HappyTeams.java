@@ -417,19 +417,19 @@ public class HappyTeams
 	{
 		for (int c = 0; c < numTeams; c++) 
 		{
-			System.out.print("Team " + (c+1) + ": "); 
+			System.out.print("Team " + (c+1) + " ("+ teamHappiness[c] + "): "); 
 			for (int r = 0; r < teamSize; r++) 
 			{
 				if(r < teamSize-1)
 				{
-					System.out.print(teamsMatrix[r][c] + ", ");	
+					System.out.print(teamsMatrix[r][c] + " (" + individualHappinessMatrix[r][c] + "), ");	
 				}
 				else
 				{
-					System.out.print(teamsMatrix[r][c]);
+					System.out.print(teamsMatrix[r][c] + " (" + individualHappinessMatrix[r][c] + ")");
 				}
 			}
-			System.out.println(". Happiness: " + teamHappiness[c]);
+			System.out.println(". Team Happiness: " + teamHappiness[c]);
 		}
 		System.out.println("Total Happiness of this set: " + totalHappiness);
 		log(4);

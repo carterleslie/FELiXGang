@@ -1,7 +1,7 @@
 # FELiXGang
  Happy Teams Project for Carter Leslie, Wade Linder, and Felix Mbikogbia for Dr. Reeves' SE20 CS374.01 class at Abilene Christian University
 
-+Pitch
+Pitch
 ---------
 For teachers who need to organize students into teams, the FELiXGang sorting system is a sorting program that sorts students based on their preferences, both positive and negative unlike Canvas' random team creation program.
 
@@ -76,8 +76,9 @@ Week 3
 * Wrote twice as many more test cases
 * Bugfixing
 
-Master Story
---------------
+#Master Story
+==============
+
 * Brainstorm on project structure and what it will take.
 * Write the initializers
 * Write a function that feeds data from file into the program (reading student names and preferences into the code)

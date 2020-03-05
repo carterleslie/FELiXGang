@@ -75,3 +75,21 @@ Week 3
 * Allows user-inputted command line arguements
 * Wrote twice as many more test cases
 * Bugfixing
+
+Master Story
+--------------
+* Brainstorm on project structure and what it will take.
+* write the initializers
+* write a function that feeds data from file into the program (reading student names and preferences into the code)
+* Add matrices that store student names and preferences separately.
+* split students into teams
+* Write a basic happiness function
+* add more to happiness function, including the calculations of happiness, both individual and group.
+* Add swap functions
+* write test functions
+* debug and add more test functions
+* finishing touches (anything that might come up during the project)
+* write the README.md file
+
+Inception Deck
+---------------

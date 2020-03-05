@@ -35,7 +35,7 @@ Important Functions
 
 Test Functions
 ---------
-```testInizializer()``` This function tests to make sure that the FELiXGang class is initialized correctly depending on the class size with a constant number of teams and team size. </b >
+```testInizializer()``` This function tests to make sure that the FELiXGang class is initialized correctly depending on the class size with a constant number of teams and team size. </br >
 ```testFillMatrix()```  This function checks to make sure that each person is in a team matrix is at the index they are supposed to be when initially filled. </br >
 ```testHappiness()``` This function tests the happiness of both an individual and a team, and makes sure the value is what it is supposed to be. </br >
 ```testSwap()```  After team members are swapped, this test checks to see if the members swapped are at the correct index. </br >

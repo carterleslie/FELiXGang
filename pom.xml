@@ -8,7 +8,7 @@
   <artifactId>sample</artifactId>
   <version>1.0</version>
 
-  <name>SampleCreator</name>
+  <name>FELiXGang</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

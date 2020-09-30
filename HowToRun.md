@@ -1,0 +1,8 @@
+
+# How to Run
+===============
+
+1. git clone https://github.com/caleslie00/FELiXGang.git
+2. One you have the clone, you must go into src > main > java and compile HappyTeams.java with java. For example, with the terminal, do "javac HappyTeams.java"
+3. Then, you must run the HappyTeams class with java. Using the terminal, imputting "java HappyTeams" will run the file, but you also need to pass it an input file to run it on. Any of the .txt files will work, so the total text to run the code will look like "java HappyTeams < bestTest.txt" if you wanted to run the code on the bestTest.txt file.
+4. To test additional functionality of the program, entering some string args after can manipulate the way the program runs. Entering -t and then a number sets the team size from 2 to half the class size, entering -v and then an integer sets the verbosity level from 0-4, entering -n and then an integer decides the number of random swaps to do to arrive at a final team, entering -l and then an integer will determine the number if different final teams to create, and entering -r will determine the percent chance of you keeping an occurence that is worse than what you started with. For example, "java GoogleHappy < bestTest.txt -v 1 -r 4 -t 4 -n 1000000 -l 10" will run the program on bestTest.txt with verbosity set to 1, creating 10 "best" teams, with 1000000 swaps per team, the team size set to 4, and a 4% chance of keeping a team that was worse than when it started off. 
